@@ -36,6 +36,6 @@ class AbstractAPI(GenericObject):
     @classmethod
     def create(cls, client=None, **kwargs):
         """
-        This will return list of resorces.
+        This will create new object
         """
         return cls.get_client(client).post(**kwargs)
