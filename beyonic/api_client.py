@@ -25,7 +25,6 @@ except ImportError:
     urlfetch = None
 
 
-
 class BaseClient(object):
     def __init__(self, verify_ssl_certs=True):
         self._verify_ssl_certs = verify_ssl_certs
@@ -38,6 +37,9 @@ class RequestsClient(BaseClient):
     name = 'requests'
 
     def request(self, method, url, headers, params=None):
+        if not requests:
+            raise BeyonicError('requests is not installed. Please install/setup it first using pip. e.g. pip install requests>=1.0')
+
         kwargs = {}
 
         if self._verify_ssl_certs:
@@ -86,6 +88,8 @@ class UrlFetchClient(BaseClient):
     name = 'urlfetch'
 
     def request(self, method, url, headers, params=None):
+        if not urlfetch:
+            raise BeyonicError('urlfetch is not installed. Please install/setup it first.')
         try:
             result = urlfetch.fetch(
                 url=url,
@@ -121,14 +125,12 @@ def get_default_http_client(*args, **kwargs):
     elif requests:
         impl = RequestsClient
     else:
-        #none of them is available so let's throw an error
-        raise BeyonicError( 'Either of requests or urlfetch is not installed. Please install either of them using requirements.txt')
+        # none of them is available so let's throw an error
+        raise BeyonicError(
+            'Either of requests or urlfetch is not installed. Please install either of them using requirements.txt')
 
     return impl(*args, **kwargs)
 
-
-DEFAULT_BASE_URL = 'https://app.beyonic.com/'
-DEFAULT_BASE_VERSION = 'v1'
 
 '''
 'API Client class interacts with api using available RequestClient or UrlFetchClient
@@ -141,7 +143,7 @@ class ApiClient(object):
     """
 
     def __init__(self, api_key=None, url=None, client=None, verify_ssl_certs=True, api_version=None):
-        #if not passed then let's try to get it from env variable
+        # if not passed then let's try to get it from env variable
         if not api_key:
             try:
                 api_key = os.environ['BEYONIC_ACCESS_KEY']
@@ -149,10 +151,15 @@ class ApiClient(object):
                 raise BeyonicError('BEYONIC_ACCESS_KEY not set.')
 
         self._api_key = api_key
-        self._api_version = api_version or DEFAULT_BASE_VERSION
-        self._url = url or DEFAULT_BASE_URL
+        self._api_version = api_version
+        if not url:
+            raise BeyonicError('Base url can\'t be empty. You should set base url using beyonic.api_endpoint_base')
 
+        self._url = url
         self._client = client or get_default_http_client(verify_ssl_certs=verify_ssl_certs)
+
+    def set_url(self, url):
+        self._url = url
 
     def get(self, **kwargs):
         '''
@@ -173,6 +180,12 @@ class ApiClient(object):
         '''
         return self._request("put", **kwargs)
 
+    def patch(self, **kwargs):
+        '''
+        Makes an HTTP patch request to the  API.
+        '''
+        return self._request("patch", **kwargs)
+
     def delete(self, **kwargs):
         '''
         Makes an HTTP DELETE request to the  API.
@@ -191,28 +204,29 @@ class ApiClient(object):
     def _build_headers(self):
         headers = {}
         if self._api_key:
-            headers.update({"Authorization": "Token %s" % self._api_key,})
+            headers.update({"Authorization": "Token %s" % self._api_key, })
 
         if self._api_version:
-            headers.update({"Beyonic-Version": self._api_version,})
+            headers.update({"Beyonic-Version": self._api_version, })
 
         return headers
 
     def _parse_response(self, response_content, status_code):
-        #TODO: need exact status code for different type error
+        # TODO: need exact status code for different type error
         if 200 <= status_code < 300:
-            return self._value_for_response(response_content)
+            return self._value_for_response(response_content, status_code)
         else:
             raise self._exception_for_response(response_content, status_code)
 
-    def _value_for_response(self, response_content):
-        if response_content:
+    def _value_for_response(self, response_content, status_code):
+        #status_code 204 is for delete so for it retruning True
+        if response_content and status_code != 204:
             return GenericObject.from_json(response_content)
         else:
             return True
 
     def _exception_for_response(self, response_content, status_code):
-        #TODO need to handle the all the status
+        # TODO need to handle the all the status
         return ResponseError("%d error: %s" % (status_code, response_content,))
 
 

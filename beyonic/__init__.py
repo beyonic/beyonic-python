@@ -1,6 +1,5 @@
 # Beyonic API Python bindings
 
-
 #default values if any
 
 #config

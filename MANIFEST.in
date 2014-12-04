@@ -1,0 +1,2 @@
+recursive-include beyonic/ *.py
+recursive-include beyonic/apis *.py
