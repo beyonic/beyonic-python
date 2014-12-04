@@ -13,13 +13,13 @@ pip install beyonic
 or
 
 ```python
-easy_install  beyonic
+easy_install beyonic
 ```
 
 or manually
 
 ```python
-git clone https://github.com/beyonic/beyonic-python/beyonic-python.git
+git clone https://nikhil_navadiya@bitbucket.org/nikhil_navadiya/beyonic-python.git
 cd beyonic-python
 python setup.py install
 ```
