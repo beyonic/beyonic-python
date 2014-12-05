@@ -24,10 +24,10 @@ class AbstractAPI(GenericObject):
 
     @classmethod
     def get_url(cls):
-        from beyonic import api_endpoint_base
+        from beyonic import api_endpoint_base, DEFAULT_ENDPOINT_BASE
 
         if not api_endpoint_base:
-            raise BeyonicError('Base url can\'t be empty. You should set base url using beyonic.api_endpoint_base')
+            api_endpoint_base = DEFAULT_ENDPOINT_BASE
 
         if not api_endpoint_base.endswith("/"):
             api_endpoint_base = api_endpoint_base + "/"
@@ -39,7 +39,18 @@ class AbstractAPI(GenericObject):
         """
         This will return list of resorces.
         """
-        return cls.get_client(client).get()
+        objs = cls.get_client(client).get()
+
+        #setting client object for each of the return object so that it can be used while saving data
+        for obj in objs:
+            if obj.id:
+                base = cls.get_url()
+                url = "%s/%s" % (base, obj.id)
+                api_client = cls.get_client(client)
+                api_client.set_url(url)
+                obj.set_client(api_client)
+
+        return objs
 
     @classmethod
     def create(cls, client=None, **kwargs):

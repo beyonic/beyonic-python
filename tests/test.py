@@ -49,7 +49,7 @@ class RequestsClientTest(BeyonicTestCase):
         self.assertEqual(target, webhook.target)
         self.assertEqual(event, webhook.event)
 
-    #getting single webhook
+    # getting single webhook
     def test003_webhook_create_get(self):
         target = "https://my.callback.url/"
         event = "payment.status.changed"
@@ -81,7 +81,7 @@ class RequestsClientTest(BeyonicTestCase):
         self.assertEqual(new_target, refreshed_webhook.target)
 
     #deleting webhook
-    def test005_webhook_create_delete(self):
+    def test006_webhook_create_delete(self):
         #creating new hook
         target = "https://mysite.com/callbacks/payment/"
         event = "payment.status.changed"
@@ -94,14 +94,26 @@ class RequestsClientTest(BeyonicTestCase):
         is_deleted = beyonic.Webhook.delete(webhook.id)
         self.assertTrue(is_deleted)
 
+    def test007_webhooks_list_save(self):
+        webhooks = beyonic.Webhook.list(client=RequestsClient(verify_ssl_certs=False))
+        self.assertLessEqual(1, len(webhooks))
+
+        #updating individual object
+        webhook = webhooks[0]
+        new_target = "https://mysite.com/callbacks/payment/saved/1"
+        webhook.target = new_target
+        webhook.save()
+        refreshed_webhook = beyonic.Webhook.get(id=webhook.id, client=RequestsClient(verify_ssl_certs=False))
+        self.assertEqual(new_target, refreshed_webhook.target)
+
 
     # getting payment using requests client lib
-    def test006_payments_list(self):
+    def test008_payments_list(self):
         payments = beyonic.Payment.list(client=RequestsClient(verify_ssl_certs=False))
         self.assertLessEqual(1, len(payments))
 
     #creating new payment
-    def test007_payment_create(self):
+    def test009_payment_create(self):
         phonenumber = "+256773712831"
         amount = 2000
         currency = 'UGX'
@@ -116,7 +128,7 @@ class RequestsClientTest(BeyonicTestCase):
         self.assertEqual(description, payment.description)
 
     #creating & getting single payment
-    def test008_payment_create_get(self):
+    def test010_payment_create_get(self):
         phonenumber = "+256773712831"
         amount = 4000
         currency = 'UGX'
@@ -187,7 +199,7 @@ class UrlFetchClientTest(BeyonicTestCase):
         self.assertEqual(new_target, refreshed_webhook.target)
 
     #deleting webhook
-    def test005_webhook_create_delete(self):
+    def test006_webhook_create_delete(self):
         #creating new hook
         target = "https://mysite.com/callbacks/payment/"
         event = "payment.status.changed"
@@ -200,13 +212,26 @@ class UrlFetchClientTest(BeyonicTestCase):
         is_deleted = beyonic.Webhook.delete(webhook.id)
         self.assertTrue(is_deleted)
 
+    def test007_webhooks_list_save(self):
+        webhooks = beyonic.Webhook.list(client=UrlFetchClient(verify_ssl_certs=False))
+        self.assertLessEqual(1, len(webhooks))
+
+        #updating individual object
+        webhook = webhooks[0]
+        new_target = "https://mysite.com/callbacks/payment/saved/1"
+        webhook.target = new_target
+        webhook.save()
+        refreshed_webhook = beyonic.Webhook.get(id=webhook.id, client=UrlFetchClient(verify_ssl_certs=False))
+        self.assertEqual(new_target, refreshed_webhook.target)
+
+
     # getting payment using urlfetch client lib
-    def test006_payments_list(self):
+    def test008_payments_list(self):
         payments = beyonic.Payment.list(client=UrlFetchClient(verify_ssl_certs=False))
         self.assertLessEqual(1, len(payments))
 
     #creating new payment
-    def test007_payment_create(self):
+    def test009_payment_create(self):
         phonenumber = "+256773712831"
         amount = 2000
         currency = 'UGX'
@@ -221,7 +246,7 @@ class UrlFetchClientTest(BeyonicTestCase):
         self.assertEqual(description, payment.description)
 
     #creating & getting single payment
-    def test008_payment_create_get(self):
+    def test010_payment_create_get(self):
         phonenumber = "+256773712831"
         amount = 4000
         currency = 'UGX'

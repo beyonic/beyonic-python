@@ -141,7 +141,6 @@ class ApiClient(object):
     """
     A client for the api
     """
-
     def __init__(self, api_key=None, url=None, client=None, verify_ssl_certs=True, api_version=None):
         # if not passed then let's try to get it from env variable
         if not api_key:

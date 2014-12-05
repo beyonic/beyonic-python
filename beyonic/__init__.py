@@ -1,6 +1,7 @@
 # Beyonic API Python bindings
 
 #default values if any
+DEFAULT_ENDPOINT_BASE = 'https://app.beyonic.com/api/'
 
 #config
 api_key = None
