@@ -2,13 +2,10 @@ import os
 
 from setuptools import setup
 
-VERSION = "0.1a1"
+VERSION = "0.1.1a1"
 
-def readme():
-    """ Load the contents of the README file """
-    readme_path = os.path.join(os.path.dirname(__file__), "README.md")
-    with open(readme_path, "r") as f:
-        return f.read()
+with open('README.md') as f:
+    long_description = f.read()
 
 setup(
     name="beyonic",
@@ -16,7 +13,7 @@ setup(
     description="The official Python client for the Beyonic.com API",
     author="Beyonic",
     author_email="info@beyonic.com",
-    long_description=readme(),
+    long_description=long_description,
     packages=["beyonic", "beyonic.apis"],
     install_requires=["requests"],
     license="MIT",
