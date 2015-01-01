@@ -19,7 +19,7 @@ easy_install beyonic
 or manually
 
 ```python
-git clone https://nikhil_navadiya@bitbucket.org/nikhil_navadiya/beyonic-python.git
+git clone https://github.com/beyonic/beyonic-python.git
 cd beyonic-python
 python setup.py install
 ```
