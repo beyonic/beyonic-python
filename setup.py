@@ -1,15 +1,15 @@
 import os
 import sys
-
+from os import path
 from setuptools import setup
 
-VERSION = "0.1.2a1"
+here = path.abspath(path.dirname(__file__))
 
-path, script = os.path.split(sys.argv[0])
-os.chdir(os.path.abspath(path))
-
-with open('README.md') as f:
+# Get the long description from the relevant file
+with open(path.join(here, 'README.md'), encoding='utf-8') as f:
     long_description = f.read()
+
+VERSION = "0.1.2a1"
 
 setup(
     name="beyonic",
