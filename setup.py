@@ -9,7 +9,7 @@ here = path.abspath(path.dirname(__file__))
 with open(path.join(here, 'README.md'), encoding='utf-8') as f:
     long_description = f.read()
 
-VERSION = "0.1.2a1"
+VERSION = "0.1.3a1"
 
 setup(
     name="beyonic",
