@@ -21,7 +21,7 @@ setup(
     install_requires=["requests"],
     license="MIT",
     keywords=["api", "mobile payments", "mobile money", "beyonic", "mpesa"],
-    url="https://github.com/beyonic/beyonic-python",
+    url="https://beyonic.com",
     classifiers=[
         "Development Status :: 3 - Alpha",
         "License :: OSI Approved :: MIT License",
