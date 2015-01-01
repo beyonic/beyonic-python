@@ -2,7 +2,10 @@ import os
 
 from setuptools import setup
 
-VERSION = "0.1.1a1"
+VERSION = "0.1.2a1"
+
+path, script = os.path.split(sys.argv[0])
+os.chdir(os.path.abspath(path))
 
 with open('README.md') as f:
     long_description = f.read()
