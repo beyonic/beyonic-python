@@ -28,7 +28,7 @@ import os
 
 from setuptools import setup
 
-VERSION = "1.0"
+VERSION = "0.1a1"
 
 def readme():
     """ Load the contents of the README file """
@@ -39,16 +39,16 @@ def readme():
 setup(
     name="beyonic",
     version=VERSION,
-    description="The official Python client for Beyonic's API",
+    description="The official Python client for the Beyonic.com API",
     author="Nikhil Navadiya, Luke Kyohere",
     author_email="nikhil.navadiya@gmail.com, luke@beyonic.com",
     long_description=readme(),
     packages=["beyonic", "beyonic.apis"],
     install_requires=["requests"],
-    license="Apache",
+    license="MIT",
     url="https://github.com/beyonic/beyonic-python",
     classifiers=[
-        "Development Status :: 1 - Alpha",
-        "License :: OSI Approved :: Apache Software License",
+        "Development Status :: 3 - Alpha",
+        "License :: OSI Approved :: MIT License",
     ],
 )
