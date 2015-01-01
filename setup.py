@@ -6,7 +6,7 @@ from setuptools import setup
 here = path.abspath(path.dirname(__file__))
 
 # Get the long description from the relevant file
-with open(path.join(here, 'README.md'), encoding='utf-8') as f:
+with open(path.join(here, 'README.md')) as f:
     long_description = f.read()
 
 VERSION = "0.1.3a1"
