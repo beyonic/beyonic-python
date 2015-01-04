@@ -1,15 +1,18 @@
 import os
 import sys
-from os import path
 from setuptools import setup
 
-here = path.abspath(path.dirname(__file__))
+def read(*rnames):
+    return open(os.path.join(os.path.dirname(__file__), *rnames)).read()
 
-# Get the long description from the relevant file
-with open(path.join(here, 'README.md')) as f:
-    long_description = f.read()
+from setuptools import setup
+import os.path
 
-VERSION = "0.1.3a1"
+if os.path.exists('README.md'):
+    import shutil
+    shutil.copyfile('README.md', 'README.txt')
+
+VERSION = "0.1.4a1"
 
 setup(
     name="beyonic",
@@ -17,7 +20,7 @@ setup(
     description="The official Python client for the Beyonic.com API",
     author="Beyonic",
     author_email="info@beyonic.com",
-    long_description=long_description,
+    long_description=read('README.txt'),
     packages=["beyonic", "beyonic.apis"],
     install_requires=["requests"],
     license="MIT",
