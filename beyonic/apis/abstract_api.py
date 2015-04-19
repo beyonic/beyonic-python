@@ -35,11 +35,11 @@ class AbstractAPI(GenericObject):
         return cls_name
 
     @classmethod
-    def list(cls, client=None):
+    def list(cls, client=None, **kwargs):
         """
         This will return list of resorces.
         """
-        objs = cls.get_client(client).get()
+        objs = cls.get_client(client).get(**kwargs)
 
         #setting client object for each of the return object so that it can be used while saving data
         for obj in objs:

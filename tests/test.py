@@ -6,7 +6,7 @@ import random
 import beyonic
 from beyonic.api_client import RequestsClient, UrlFetchClient
 
-TEST_API_KEY = '6202349b8068b349b6e0b389be2a65cc36847c75'
+TEST_API_KEY = '312726d359422c52d986e6a67f713cdf42eb9f96'
 TEST_BASE_URL = 'https://staging.beyonic.com/api/'
 
 '''
@@ -63,8 +63,9 @@ class RequestsClientTest(BeyonicTestCase):
         self.assertEqual(event, refreshed_webhook.event)
 
     #updating webhook using update method
+
     def test004_webhook_update_get(self):
-        web_id = 10
+        web_id = 49
         new_target = "https://mysite.com/callbacks/payment/updated"
         webhook = beyonic.Webhook.update(id=web_id, client=RequestsClient(verify_ssl_certs=False), target=new_target)
         refreshed_webhook = beyonic.Webhook.get(id=webhook.id, client=RequestsClient(verify_ssl_certs=False))
@@ -72,7 +73,7 @@ class RequestsClientTest(BeyonicTestCase):
 
     #updating webhook using save
     def test005_webhook_save_get(self):
-        web_id = 10
+        web_id = 49
         new_target = "https://mysite.com/callbacks/payment/saved"
         webhook = beyonic.Webhook.get(id=web_id, client=RequestsClient(verify_ssl_certs=False))
         webhook.target = new_target
@@ -119,12 +120,14 @@ class RequestsClientTest(BeyonicTestCase):
         currency = 'UGX'
         description = 'Sample description'
         callback_url = 'https://google.com'
+        payment_type = 'money'
 
         payment = beyonic.Payment.create(client=RequestsClient(verify_ssl_certs=False), phonenumber=phonenumber,
                                          amount=amount, currency=currency, description=description,
-                                         callback_url=callback_url)
+                                         callback_url=callback_url, payment_type=payment_type)
 
-        self.assertIn(phonenumber, payment.phone_nos)
+        #self.assertIn(phonenumber, payment.phone_nos)
+        self.assertEqual(payment_type, payment.payment_type)
         self.assertEqual(description, payment.description)
 
     #creating & getting single payment
@@ -134,22 +137,64 @@ class RequestsClientTest(BeyonicTestCase):
         currency = 'UGX'
         description = 'Sample description'
         callback_url = 'https://google.com'
+        payment_type = 'money'
 
         payment = beyonic.Payment.create(client=RequestsClient(verify_ssl_certs=False), phonenumber=phonenumber,
                                          amount=amount, currency=currency, description=description,
-                                         callback_url=callback_url)
+                                         callback_url=callback_url, payment_type=payment_type)
 
-        self.assertIn(phonenumber, payment.phone_nos)
-        self.assertEqual(description, payment.description)
+        #self.assertIn(phonenumber, payment.phone_nos)
+        self.assertEqual(payment_type, payment.payment_type)
+        self.assertIn(description, payment.description)
 
         refreshed_payment = beyonic.Payment.get(id=payment.id, client=RequestsClient(verify_ssl_certs=False))
-        self.assertIn(phonenumber, refreshed_payment.phone_nos)
+        #self.assertIn(phonenumber, refreshed_payment.phone_nos)
+        self.assertIn(payment_type, refreshed_payment.payment_type)
         self.assertEqual(description, refreshed_payment.description)
 
 
-'''
-UrlFetchClient test cases.
-'''
+    def test011_collection_list(self):
+        collections = beyonic.Collection.list(client=RequestsClient(verify_ssl_certs=False))
+        self.assertLessEqual(1, len(collections))
+
+
+    def test012_collection_get(self):
+        collection_id = 1
+        collection = beyonic.Collection.get(id=collection_id, client=RequestsClient(verify_ssl_certs=False))
+        self.assertEqual(collection.id, collection.id)
+
+
+    def test013_collection_search(self):
+        collections = beyonic.Collection.list(client=RequestsClient(verify_ssl_certs=False), phonenumber='+254727843600', organization='5')
+        self.assertLessEqual(1, len(collections))
+
+    def test014_collection_claim(self):
+        collections = beyonic.Collection.list(client=RequestsClient(verify_ssl_certs=False), claim=True, phonenumber='+254727843600', remote_transaction_id=None, amount='200')
+        self.assertLessEqual(1, len(collections))
+
+    def test015_create_collectionrequst(self):
+        phonenumber = "+256773712831"
+        amount = '1200'
+        currency='UGX'
+        collection_request = beyonic.CollectionRequest.create(client=RequestsClient(verify_ssl_certs=False), phonenumber=phonenumber,
+                                         amount=amount, currency=currency)
+
+        self.assertIn(phonenumber, collection_request.phonenumber)
+        self.assertEqual(currency, collection_request.currency)
+
+        refreshed_collection_request = beyonic.CollectionRequest.get(id=collection_request.id, client=RequestsClient(verify_ssl_certs=False))
+        self.assertIn(phonenumber, refreshed_collection_request.phonenumber)
+        self.assertEqual(currency, refreshed_collection_request.currency)
+
+    def test016_list_collection_requests(self):
+        collections_requests = beyonic.CollectionRequest.list(client=RequestsClient(verify_ssl_certs=False))
+        self.assertLessEqual(1, len(collections_requests))
+
+
+###
+#Url Fetch test cases
+###
+
 class UrlFetchClientTest(BeyonicTestCase):
     # getting webhooks using urlfetch client lib
 
@@ -263,6 +308,43 @@ class UrlFetchClientTest(BeyonicTestCase):
         refreshed_payment = beyonic.Payment.get(id=payment.id, client=UrlFetchClient(verify_ssl_certs=False))
         self.assertIn(phonenumber, refreshed_payment.phone_nos)
         self.assertEqual(description, refreshed_payment.description)
+
+    def test011_collection_list(self):
+        collections = beyonic.Collection.list(client=UrlFetchClient(verify_ssl_certs=False))
+        self.assertLessEqual(1, len(collections))
+
+
+    def test012_collection_get(self):
+        collection_id = 1
+        collection = beyonic.Collection.get(id=collection_id, client=UrlFetchClient(verify_ssl_certs=False))
+        self.assertEqual(collection.id, collection.id)
+
+
+    def test013_collection_search(self):
+        collections = beyonic.Collection.list(client=UrlFetchClient(verify_ssl_certs=False), phonenumber='+254727843600', organization='5')
+        self.assertLessEqual(1, len(collections))
+
+    def test014_collection_claim(self):
+        collections = beyonic.Collection.list(client=UrlFetchClient(verify_ssl_certs=False), claim=True, phonenumber='+254727843600', remote_transaction_id=None, amount='200')
+        self.assertLessEqual(1, len(collections))
+
+    def test015_create_collectionrequst(self):
+        phonenumber = "+256773712831"
+        amount = '1200'
+        currency='UGX'
+        collection_request = beyonic.CollectionRequest.create(client=UrlFetchClient(verify_ssl_certs=False), phonenumber=phonenumber,
+                                         amount=amount, currency=currency)
+
+        self.assertIn(phonenumber, collection_request.phonenumber)
+        self.assertEqual(currency, collection_request.currency)
+
+        refreshed_collection_request = beyonic.CollectionRequest.get(id=collection_request.id, client=UrlFetchClient(verify_ssl_certs=False))
+        self.assertIn(phonenumber, refreshed_collection_request.phonenumber)
+        self.assertEqual(currency, refreshed_collection_request.currency)
+
+    def test016_list_collection_requests(self):
+        collections_requests = beyonic.CollectionRequest.list(client=UrlFetchClient(verify_ssl_certs=False))
+        self.assertLessEqual(1, len(collections_requests))
 
 
 if __name__ == "__main__":
