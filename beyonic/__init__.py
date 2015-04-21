@@ -11,3 +11,5 @@ verify_ssl_certs = True #set to False if you want to bypass SSL checks(mostly us
 
 from beyonic.apis.payment import Payment
 from beyonic.apis.webhooks import Webhook
+from beyonic.apis.collection import Collection
+from beyonic.apis.collection import CollectionRequest
