@@ -1,4 +1,8 @@
 .idea
 *.pyc
+.coverage
+.project
+.pydevelopment
+.pydevproject
 vagrant/*
 vagrant
