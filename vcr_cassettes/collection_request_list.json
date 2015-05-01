@@ -1,0 +1,80 @@
+{
+  "recorded_with": "VCR 2.9.3", 
+  "interactions": [
+    {
+      "request": {
+        "body": {
+          "string": "", 
+          "encoding": "US-ASCII"
+        }, 
+        "headers": {
+          "Accept": [
+            "*/*; q=0.5, application/xml"
+          ], 
+          "Beyonic-Version": [
+            "v1"
+          ], 
+          "Accept-Encoding": [
+            "gzip, deflate"
+          ], 
+          "Authorization": [
+            "Token d349087313cc7a6627d77ab61163d4dab6449b4c"
+          ]
+        }, 
+        "method": "GET", 
+        "uri": "https://staging.beyonic.com/api/collectionrequests"
+      }, 
+      "response": {
+        "status": {
+          "message": "OK", 
+          "code": 200
+        }, 
+        "headers": {
+          "X-Xss-Protection": [
+            "1; mode=block"
+          ], 
+          "Content-Language": [
+            "en-us"
+          ], 
+          "X-Content-Type-Options": [
+            "nosniff"
+          ], 
+          "Transfer-Encoding": [
+            "chunked"
+          ], 
+          "Strict-Transport-Security": [
+            "max-age=31536000; includeSubDomains", 
+            "max-age=31536000; includeSubDomains"
+          ], 
+          "Vary": [
+            "Accept, Accept-Language, Cookie"
+          ], 
+          "Server": [
+            "nginx/1.6.2"
+          ], 
+          "Connection": [
+            "keep-alive"
+          ], 
+          "Allow": [
+            "GET, POST, HEAD, OPTIONS"
+          ], 
+          "Date": [
+            "Sat, 11 Apr 2015 22:06:28 GMT"
+          ], 
+          "X-Frame-Options": [
+            "DENY"
+          ], 
+          "Content-Type": [
+            "application/json"
+          ]
+        }, 
+        "body": {
+          "string": "[{\"id\": 3, \"organization\": 5, \"amount\": \"3000.0000\", \"currency\": \"UGX\", \"phonenumber\": \"+256772781923\", \"created\": \"2015-04-11T22:06:21Z\", \"author\": 37, \"modified\": \"2015-04-11T22:06:21Z\", \"updated_by\": null}]", 
+          "encoding": "UTF-8"
+        }, 
+        "http_version": null
+      }, 
+      "recorded_at": "Sat, 11 Apr 2015 22:06:28 GMT"
+    }
+  ]
+}
