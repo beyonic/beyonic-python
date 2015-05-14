@@ -22,7 +22,7 @@
           ]
         }, 
         "method": "GET", 
-        "uri": "https://staging.beyonic.com/api/collections"
+        "uri": "https://staging.beyonic.com/api/collections?phonenumber=%2B2547227272723&remote_transaction_id=12132"
       }, 
       "response": {
         "status": {
@@ -69,7 +69,7 @@
           ]
         }, 
         "body": {
-          "string": "[{\"id\": 1, \"remote_transaction_id\": null, \"organization\": 5, \"amount\": \"100.0000\", \"currency\": 2, \"phonenumber\": \"+254727843600\", \"payment_date\": \"2014-09-11T09:00:12Z\", \"reference\": \"xwd\", \"status\": \"successful\", \"created\": \"2014-09-17T12:22:06Z\", \"author\": null, \"modified\": \"2014-09-17T12:22:07Z\", \"updated_by\": null}]", 
+          "string": "[{\"id\": 1, \"remote_transaction_id\": 12312, \"organization\": 5, \"amount\": \"100.0000\", \"currency\": 2, \"phonenumber\": \"+2547227272723\", \"payment_date\": \"2014-09-11T09:00:12Z\", \"reference\": \"xwd\", \"status\": \"successful\", \"created\": \"2014-09-17T12:22:06Z\", \"author\": null, \"modified\": \"2014-09-17T12:22:07Z\", \"updated_by\": null}]", 
           "encoding": "UTF-8"
         }, 
         "http_version": null

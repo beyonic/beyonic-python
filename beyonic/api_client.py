@@ -47,7 +47,15 @@ class RequestsClient(BaseClient):
 
         try:
             try:
-                result = requests.request(method,
+                if method.upper() == 'GET':
+                    result = requests.request(method,
+                                          url,
+                                          headers=headers,
+                                          params=params,
+                                          timeout=80,
+                                          **kwargs)
+                else:
+                    result = requests.request(method,
                                           url,
                                           headers=headers,
                                           data=params,

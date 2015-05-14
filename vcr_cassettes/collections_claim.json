@@ -22,7 +22,7 @@
           ]
         }, 
         "method": "GET", 
-        "uri": "https://staging.beyonic.com/api/collections"
+        "uri": "https://staging.beyonic.com/api/collections?claim=True&amount=200&phonenumber=%2B254727843600"
       }, 
       "response": {
         "status": {
