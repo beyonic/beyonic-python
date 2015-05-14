@@ -137,6 +137,7 @@ class GenericObject(dict):
         else:
             return unicode_repr
 
+    '''
     def __str__(self):
         if isinstance(self.get('id'), dict):
             self = self.get('id')
@@ -145,3 +146,4 @@ class GenericObject(dict):
         if '_client' in data:
             data['_client'] = None
         return json.dumps(data, sort_keys=True, indent=2)
+    '''

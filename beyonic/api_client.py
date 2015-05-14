@@ -29,9 +29,6 @@ class BaseClient(object):
     def __init__(self, verify_ssl_certs=True):
         self._verify_ssl_certs = verify_ssl_certs
 
-    def request(self, method, url, headers, post_data=None):
-        raise NotImplementedError('BaseClient subclasses must implement `request`')
-
 
 class RequestsClient(BaseClient):
     name = 'requests'
