@@ -59,6 +59,8 @@ class RequestsClientTest(BeyonicTestCase):
         self.assertEqual(event, webhook.event)
 
         refreshed_webhook = self.beyonic.Webhook.get(id=webhook.id, client=self.client)
+        #hack
+        str(refreshed_webhook)
         self.assertEqual(target, refreshed_webhook.target)
         self.assertEqual(event, refreshed_webhook.event)    
     

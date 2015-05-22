@@ -75,16 +75,12 @@ class RequestsClient(BaseClient):
         return content, status_code
 
     def _handle_request_error(self, e):
-        if isinstance(e, requests.exceptions.RequestException):
-            msg = ("Unexpected error communicating with Beyonic API.")
-            err = "%s: %s" % (type(e).__name__, str(e))
+        msg = ("Unexpected error communicating with Beyonic API.")
+        err = "A %s was raised" % (type(e).__name__,)
+        if str(e):
+            err += " with error message %s" % (str(e),)
         else:
-            msg = ("Unexpected error communicating with Beyonic API.")
-            err = "A %s was raised" % (type(e).__name__,)
-            if str(e):
-                err += " with error message %s" % (str(e),)
-            else:
-                err += " with no error message"
+            err += " with no error message"
         msg = textwrap.fill(msg) + "\n\n(error: %s)" % (err,)
         raise BeyonicError(msg)
 

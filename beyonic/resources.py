@@ -118,6 +118,7 @@ class GenericObject(dict):
         if prop in self:
             self[prop] = None
 
+    '''
     def __repr__(self):
         ident_parts = [type(self).__name__]
 
@@ -136,7 +137,7 @@ class GenericObject(dict):
             return unicode_repr.encode('utf-8')
         else:
             return unicode_repr
-
+    '''
     
     def __str__(self):
         if isinstance(self.get('id'), dict):
