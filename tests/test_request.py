@@ -29,6 +29,7 @@ class RequestsClientTest(BeyonicTestCase):
     client = RequestsClient(verify_ssl_certs=False)
     # getting webhooks using requests client lib
     
+    
     @tape.use_cassette('webhooks_list.json')
     def test001_webhooks_list(self):
         webhooks = self.beyonic.Webhook.list(client=self.client)
@@ -58,6 +59,8 @@ class RequestsClientTest(BeyonicTestCase):
         self.assertEqual(event, webhook.event)
 
         refreshed_webhook = self.beyonic.Webhook.get(id=webhook.id, client=self.client)
+        #hack
+        str(refreshed_webhook)
         self.assertEqual(target, refreshed_webhook.target)
         self.assertEqual(event, refreshed_webhook.event)    
     
@@ -193,7 +196,7 @@ class RequestsClientTest(BeyonicTestCase):
     
     @tape.use_cassette('collections_search.json')
     def test013_collection_search(self):
-        collections = self.beyonic.Collection.list(client=self.client, phonenumber='+254727843600', organization='5')
+        collections = self.beyonic.Collection.list(client=self.client, phonenumber='+2547227272723', remote_transaction_id='12132')
         self.assertLessEqual(1, len(collections))
         
     
@@ -227,7 +230,7 @@ class RequestsClientTest(BeyonicTestCase):
         collections_requests = self.beyonic.CollectionRequest.list(client=self.client)
         self.assertLessEqual(1, len(collections_requests))
         
-        
+    
     
 if __name__ == '__main__':
     unittest.main()

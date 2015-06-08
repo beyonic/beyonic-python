@@ -29,9 +29,6 @@ class BaseClient(object):
     def __init__(self, verify_ssl_certs=True):
         self._verify_ssl_certs = verify_ssl_certs
 
-    def request(self, method, url, headers, post_data=None):
-        raise NotImplementedError('BaseClient subclasses must implement `request`')
-
 
 class RequestsClient(BaseClient):
     name = 'requests'
@@ -50,7 +47,15 @@ class RequestsClient(BaseClient):
 
         try:
             try:
-                result = requests.request(method,
+                if method.upper() == 'GET':
+                    result = requests.request(method,
+                                          url,
+                                          headers=headers,
+                                          params=params,
+                                          timeout=80,
+                                          **kwargs)
+                else:
+                    result = requests.request(method,
                                           url,
                                           headers=headers,
                                           data=params,
@@ -70,16 +75,12 @@ class RequestsClient(BaseClient):
         return content, status_code
 
     def _handle_request_error(self, e):
-        if isinstance(e, requests.exceptions.RequestException):
-            msg = ("Unexpected error communicating with Beyonic API.")
-            err = "%s: %s" % (type(e).__name__, str(e))
+        msg = ("Unexpected error communicating with Beyonic API.")
+        err = "A %s was raised" % (type(e).__name__,)
+        if str(e):
+            err += " with error message %s" % (str(e),)
         else:
-            msg = ("Unexpected error communicating with Beyonic API.")
-            err = "A %s was raised" % (type(e).__name__,)
-            if str(e):
-                err += " with error message %s" % (str(e),)
-            else:
-                err += " with no error message"
+            err += " with no error message"
         msg = textwrap.fill(msg) + "\n\n(error: %s)" % (err,)
         raise BeyonicError(msg)
 

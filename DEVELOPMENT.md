@@ -3,7 +3,7 @@
 ##### Installing dependencies
 Please run following command:
 ```
-pip install -r requirements_text.txt
+pip install -r requirements_test.txt
 ```
 
 ##### Adding new api model
