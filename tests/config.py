@@ -13,7 +13,6 @@ tape = vcr.VCR(
     filter_headers=['Authorization'],
     serializer='json',
     record_mode='once',
-    match_on = ['uri', 'method'],
 )
 
 class BeyonicTestCase(unittest.TestCase):
