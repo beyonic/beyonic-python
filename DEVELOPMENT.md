@@ -1,9 +1,9 @@
 # Beyonic Python Library
 
 ##### Installing dependencies
-Please run following command:
+Please run following command to install dependencies:
 ```
-pip install -r requirements_test.txt
+pip install -r requirements/test.txt
 ```
 
 ##### Adding new api model
