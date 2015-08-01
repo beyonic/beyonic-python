@@ -22,7 +22,7 @@
           ]
         }, 
         "method": "GET", 
-        "uri": "https://staging.beyonic.com/api/collections?remote_transaction_id=12132&phonenumber=%2B2547227272723"
+        "uri": "https://staging.beyonic.com/api/collections?phonenumber=%2B2547227272723&remote_transaction_id=12132"
       }, 
       "response": {
         "status": {
