@@ -1,0 +1,64 @@
+{
+    "version": 1, 
+    "interactions": [
+        {
+            "request": {
+                "body": null, 
+                "headers": {
+                    "Connection": [
+                        "keep-alive"
+                    ], 
+                    "Beyonic-Version": [
+                        "v1"
+                    ], 
+                    "Accept-Encoding": [
+                        "gzip, deflate"
+                    ], 
+                    "Accept": [
+                        "*/*"
+                    ], 
+                    "User-Agent": [
+                        "python-requests/2.7.0 CPython/2.7.6 Darwin/14.4.0"
+                    ]
+                }, 
+                "method": "GET", 
+                "uri": "https://staging.beyonic.com/api/webhooks/52"
+            }, 
+            "response": {
+                "status": {
+                    "message": "OK", 
+                    "code": 200
+                }, 
+                "headers": {
+                    "content-language": [
+                        "en"
+                    ], 
+                    "vary": [
+                        "Accept, Accept-Language, Cookie"
+                    ], 
+                    "server": [
+                        "Werkzeug/0.9.4 Python/2.7.6"
+                    ], 
+                    "connection": [
+                        "close"
+                    ], 
+                    "allow": [
+                        "GET, PUT, PATCH, DELETE, HEAD, OPTIONS"
+                    ], 
+                    "date": [
+                        "Sat, 01 Aug 2015 17:22:10 GMT"
+                    ], 
+                    "x-frame-options": [
+                        "SAMEORIGIN"
+                    ], 
+                    "content-type": [
+                        "application/json"
+                    ]
+                }, 
+                "body": {
+                    "string": "{\"id\":58,\"created\":\"2015-08-01T17:05:38Z\",\"updated\":\"2015-08-01T17:05:38Z\",\"event\":\"payment.status.changed\",\"target\":\"https://my.callback.url/\",\"user\":42}"
+                }
+            }
+        }
+    ]
+}

@@ -5,7 +5,6 @@ from time import sleep
 import os
 import logging
 
-
 from nose import SkipTest
 from config import BeyonicTestCase, tape
 from beyonic.api_client import RequestsClient
@@ -58,7 +57,9 @@ class RequestsClientTest(BeyonicTestCase):
         self.assertEqual(target, webhook.target)
         self.assertEqual(event, webhook.event)
 
-        refreshed_webhook = self.beyonic.Webhook.get(id=webhook.id, client=self.client)
+        with tape.use_cassette('webhooks_get.json'):
+            refreshed_webhook = self.beyonic.Webhook.get(id=webhook.id, client=self.client)
+
         #hack
         str(refreshed_webhook)
         self.assertEqual(target, refreshed_webhook.target)
@@ -188,7 +189,9 @@ class RequestsClientTest(BeyonicTestCase):
     #collection get
     @tape.use_cassette('collections_get.json')
     def test012_collection_get(self):
-        collection_id = 1
+        with tape.use_cassette('collections_list.json'):
+            collections = self.beyonic.Collection.list(client=self.client)
+            collection_id = collections[0]['id']
         collection = self.beyonic.Collection.get(id=collection_id, client=self.client)
         self.assertEqual(collection.id, collection.id)
     
