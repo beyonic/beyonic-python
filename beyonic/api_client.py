@@ -40,8 +40,7 @@ class RequestsClient(BaseClient):
         kwargs = {}
 
         if self._verify_ssl_certs:
-            kwargs['verify'] = os.path.join(
-                os.path.dirname(__file__), 'certs/ca-certificates.crt')
+            kwargs['verify'] = True
         else:
             kwargs['verify'] = False
 
