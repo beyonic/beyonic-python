@@ -4,18 +4,16 @@
 # if both of them not installed then throws the exception
 '''
 
-import os, sys
-import urllib
 import textwrap
 from beyonic.errors import BeyonicError, ResponseError
 from beyonic.resources import GenericObject
+import os
 
 # let's try to import requests if its available
 try:
     import requests
 except ImportError:
     requests = None
-
 
 
 # let's try to import urlfetch

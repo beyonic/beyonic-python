@@ -27,3 +27,7 @@ python setup.py install
 ## Usage
 
 Please visit http://support.beyonic.com/api for usage documentation
+
+## Development
+
+Please see DEVELOPMENT.md for information on adding installing requirements, adding new API methods and running tests

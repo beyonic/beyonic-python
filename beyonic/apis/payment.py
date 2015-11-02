@@ -1,7 +1,8 @@
 from beyonic.apis.abstract_api import AbstractAPI
 
-'''
-Payment api wrapper class
-'''
+
 class Payment(AbstractAPI):
+    """
+    Payment api wrapper class
+    """
     _method_path = 'payments'

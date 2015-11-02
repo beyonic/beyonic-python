@@ -1,15 +1,12 @@
-import os
-import urllib
 from beyonic.api_client import ApiClient
 from beyonic.resources import GenericObject
-from beyonic.errors import BeyonicError, ResponseError
-
-'''
-' AbtractApi class, all the other api class extends it
-'''
+from beyonic.errors import BeyonicError
 
 
 class AbstractAPI(GenericObject):
+    """
+    AbtractApi class, all the other api class extends it
+    """
     @classmethod
     def get_client(cls, client=None):
         url = cls.get_url()
