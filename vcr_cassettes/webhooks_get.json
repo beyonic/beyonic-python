@@ -9,7 +9,7 @@
                         "keep-alive"
                     ], 
                     "Beyonic-Version": [
-                        "v1"
+                        "v2"
                     ], 
                     "Accept-Encoding": [
                         "gzip, deflate"
@@ -18,11 +18,11 @@
                         "*/*"
                     ], 
                     "User-Agent": [
-                        "python-requests/2.7.0 CPython/2.7.6 Darwin/14.4.0"
+                        "python-requests/2.7.0 CPython/2.7.10 Darwin/15.0.0"
                     ]
                 }, 
                 "method": "GET", 
-                "uri": "https://staging.beyonic.com/api/webhooks/52"
+                "uri": "http://localhost:8000/api/webhooks/242"
             }, 
             "response": {
                 "status": {
@@ -37,7 +37,7 @@
                         "Accept, Accept-Language, Cookie"
                     ], 
                     "server": [
-                        "Werkzeug/0.9.4 Python/2.7.6"
+                        "Werkzeug/0.9.4 Python/2.7.10"
                     ], 
                     "connection": [
                         "close"
@@ -46,7 +46,7 @@
                         "GET, PUT, PATCH, DELETE, HEAD, OPTIONS"
                     ], 
                     "date": [
-                        "Sat, 01 Aug 2015 17:22:10 GMT"
+                        "Wed, 11 Nov 2015 05:02:34 GMT"
                     ], 
                     "x-frame-options": [
                         "SAMEORIGIN"
@@ -56,7 +56,7 @@
                     ]
                 }, 
                 "body": {
-                    "string": "{\"id\":58,\"created\":\"2015-08-01T17:05:38Z\",\"updated\":\"2015-08-01T17:05:38Z\",\"event\":\"payment.status.changed\",\"target\":\"https://my.callback.url/\",\"user\":42}"
+                    "string": "{\"id\":242,\"created\":\"2015-11-11T05:02:34Z\",\"updated\":\"2015-11-11T05:02:34Z\",\"event\":\"payment.status.changed\",\"target\":\"https://my.callback.url/\",\"user\":42}"
                 }
             }
         }

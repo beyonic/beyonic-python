@@ -1,86 +1,70 @@
 {
-  "recorded_with": "VCR 2.9.3", 
-  "interactions": [
-    {
-      "request": {
-        "body": {
-          "string": "phonenumber=%2B256773712831&amount=100.2&currency=UGX&description=Per%20diem%20payment&payment_type=money&callback_url=https%3A%2F%2Fmy.website%2Fpayments%2Fcallback&metadata=%7B'id'%3A%20'1234'%2C%20'name'%3A%20'Lucy'%7D", 
-          "encoding": "US-ASCII"
-        }, 
-        "headers": {
-          "Content-Length": [
-            "221"
-          ], 
-          "Accept-Encoding": [
-            "gzip, deflate"
-          ], 
-          "Authorization": [
-            "Token d349087313cc7a6627d77ab61163d4dab6449b4c"
-          ],
-          "Content-Type": [
-            "application/x-www-form-urlencoded"
-          ], 
-          "Accept": [
-            "*/*; q=0.5, application/xml"
-          ], 
-          "Beyonic-Version": [
-            "v1"
-          ]
-        }, 
-        "method": "POST", 
-        "uri": "https://staging.beyonic.com/api/payments"
-      }, 
-      "response": {
-        "status": {
-          "message": "CREATED", 
-          "code": 201
-        }, 
-        "headers": {
-          "X-Xss-Protection": [
-            "1; mode=block"
-          ], 
-          "Content-Language": [
-            "en-us"
-          ], 
-          "X-Content-Type-Options": [
-            "nosniff"
-          ], 
-          "Transfer-Encoding": [
-            "chunked"
-          ], 
-          "Strict-Transport-Security": [
-            "max-age=31536000; includeSubDomains", 
-            "max-age=31536000; includeSubDomains"
-          ], 
-          "Vary": [
-            "Accept, Accept-Language, Cookie"
-          ], 
-          "Server": [
-            "nginx/1.6.2"
-          ], 
-          "Connection": [
-            "keep-alive"
-          ], 
-          "Allow": [
-            "GET, POST, HEAD, OPTIONS"
-          ], 
-          "Date": [
-            "Wed, 08 Apr 2015 17:14:48 GMT"
-          ], 
-          "X-Frame-Options": [
-            "DENY"
-          ], 
-          "Content-Type": [
-            "application/json"
-          ]
-        }, 
-        "body": {
-          "string": "{\"id\": 211, \"organization\": 5, \"amount\": \"2000\", \"currency\": \"UGX\", \"payment_type\": \"money\", \"metadata\": {\"id\": \"1234\", \"name\": \"Lucy\"}, \"description\": \"Sample description\", \"phone_nos\": [\"+256773712831\"], \"state\": \"new\", \"last_error\": null, \"rejected_reason\": null, \"rejected_by\": null, \"rejected_time\": null, \"cancelled_reason\": null, \"cancelled_by\": null, \"cancelled_time\": null, \"created\": \"2015-04-08T17:14:48.014Z\", \"author\": 37, \"modified\": \"2015-04-08T17:14:48.016Z\", \"updated_by\": null, \"start_date\": \"2015-04-08T17:14:48.016Z\"}", 
-          "encoding": "UTF-8"
-        }, 
-        "http_version": null
-      }, 
-      "recorded_at": "Wed, 08 Apr 2015 17:14:48 GMT"
-    }
-  ]
+    "version": 1, 
+    "interactions": [
+        {
+            "request": {
+                "body": "description=Sample+description&currency=UGX&amount=2000&phonenumber=%2B256773712831&payment_type=money&callback_url=https%3A%2F%2Fgoogle.com", 
+                "headers": {
+                    "Content-Length": [
+                        "140"
+                    ], 
+                    "Accept-Encoding": [
+                        "gzip, deflate"
+                    ], 
+                    "Accept": [
+                        "*/*"
+                    ], 
+                    "User-Agent": [
+                        "python-requests/2.7.0 CPython/2.7.10 Darwin/15.0.0"
+                    ], 
+                    "Connection": [
+                        "keep-alive"
+                    ], 
+                    "Beyonic-Version": [
+                        "v2"
+                    ], 
+                    "Content-Type": [
+                        "application/x-www-form-urlencoded"
+                    ]
+                }, 
+                "method": "POST", 
+                "uri": "http://localhost:8000/api/payments"
+            }, 
+            "response": {
+                "status": {
+                    "message": "CREATED", 
+                    "code": 201
+                }, 
+                "headers": {
+                    "content-language": [
+                        "en"
+                    ], 
+                    "vary": [
+                        "Accept, Accept-Language, Cookie"
+                    ], 
+                    "server": [
+                        "Werkzeug/0.9.4 Python/2.7.10"
+                    ], 
+                    "connection": [
+                        "close"
+                    ], 
+                    "allow": [
+                        "GET, POST, HEAD, OPTIONS"
+                    ], 
+                    "date": [
+                        "Wed, 11 Nov 2015 05:02:34 GMT"
+                    ], 
+                    "x-frame-options": [
+                        "SAMEORIGIN"
+                    ], 
+                    "content-type": [
+                        "application/json"
+                    ]
+                }, 
+                "body": {
+                    "string": "{\"id\":342,\"organization\":1,\"amount\":\"2000.0000\",\"currency\":\"UGX\",\"payment_type\":\"money\",\"metadata\":{},\"description\":\"Sample description\",\"phone_nos\":[\"+256773712831\"],\"state\":\"new\",\"last_error\":\"\",\"rejected_reason\":null,\"rejected_by\":null,\"rejected_time\":null,\"cancelled_reason\":null,\"cancelled_by\":null,\"cancelled_time\":null,\"created\":\"2015-11-11T05:02:34.849064Z\",\"author\":42,\"modified\":\"2015-11-11T05:02:34.852285Z\",\"updated_by\":42,\"start_date\":\"2015-11-11T05:02:34.849093Z\"}"
+                }
+            }
+        }
+    ]
 }

@@ -1,166 +1,70 @@
 {
-  "interactions": [
-    {
-      "request": {
-        "body": {
-          "string": "event=payment.status.changed&target=https%3A%2F%2Fmy.callback.url%2F", 
-          "encoding": "US-ASCII"
-        }, 
-        "headers": {
-          "Content-Length": [
-            "68"
-          ], 
-          "Accept-Encoding": [
-            "gzip, deflate"
-          ], 
-          "Authorization": [
-            "Token d349087313cc7a6627d77ab61163d4dab6449b4c"
-          ], 
-          "User-Agent": [
-            "python-requests/2.6.2 CPython/2.7.6 Linux/3.13.0-32-generic"
-          ], 
-          "Content-Type": [
-            "application/x-www-form-urlencoded"
-          ], 
-          "Accept": [
-            "*/*; q=0.5, application/xml"
-          ], 
-          "Beyonic-Version": [
-            "v1"
-          ]
-        }, 
-        "method": "POST", 
-        "uri": "https://staging.beyonic.com/api/webhooks"
-      }, 
-      "response": {
-        "status": {
-          "message": "CREATED", 
-          "code": 201
-        }, 
-        "headers": {
-          "X-Xss-Protection": [
-            "1; mode=block"
-          ], 
-          "Content-Language": [
-            "en-us"
-          ], 
-          "X-Content-Type-Options": [
-            "nosniff"
-          ], 
-          "Transfer-Encoding": [
-            "chunked"
-          ], 
-          "Strict-Transport-Security": [
-            "max-age=31536000; includeSubDomains", 
-            "max-age=31536000; includeSubDomains"
-          ], 
-          "Vary": [
-            "Accept, Accept-Language, Cookie"
-          ], 
-          "Server": [
-            "nginx/1.6.2"
-          ], 
-          "Connection": [
-            "keep-alive"
-          ], 
-          "Allow": [
-            "GET, POST, HEAD, OPTIONS"
-          ], 
-          "Date": [
-            "Wed, 08 Apr 2015 17:14:57 GMT"
-          ], 
-          "X-Frame-Options": [
-            "DENY"
-          ], 
-          "Content-Type": [
-            "application/json"
-          ]
-        }, 
-        "body": {
-          "string": "{\"id\": 52, \"created\": \"2015-04-08T17:14:57.945Z\", \"updated\": \"2015-04-08T17:14:57.945Z\", \"user\": 37, \"event\": \"payment.status.changed\", \"target\": \"https://my.callback.url/\"}", 
-          "encoding": "UTF-8"
-        }, 
-        "http_version": null
-      }, 
-      "recorded_at": "Wed, 08 Apr 2015 17:14:57 GMT"
-    },
-    {
-	    "request": {
-	        "body": {
-	          "string": "", 
-	          "encoding": "US-ASCII"
-	        }, 
-	        "headers": {
-	          "Accept": [
-	            "*/*; q=0.5, application/xml"
-	          ], 
-	          "Beyonic-Version": [
-	            "v1"
-	          ], 
-	          "Accept-Encoding": [
-	            "gzip, deflate"
-	          ], 
-	          "Authorization": [
-	            "Token d349087313cc7a6627d77ab61163d4dab6449b4c"
-	          ], 
-	          "User-Agent": [
-	            "Ruby"
-	          ]
-	        }, 
-	        "method": "GET", 
-	        "uri": "https://staging.beyonic.com/api/webhooks/52"
-	      }, 
-	      "response": {
-	        "status": {
-	          "message": "OK", 
-	          "code": 200
-	        }, 
-	        "headers": {
-	          "X-Xss-Protection": [
-	            "1; mode=block"
-	          ], 
-	          "Content-Language": [
-	            "en-us"
-	          ], 
-	          "X-Content-Type-Options": [
-	            "nosniff"
-	          ], 
-	          "Transfer-Encoding": [
-	            "chunked"
-	          ], 
-	          "Strict-Transport-Security": [
-	            "max-age=31536000; includeSubDomains", 
-	            "max-age=31536000; includeSubDomains"
-	          ], 
-	          "Vary": [
-	            "Accept, Accept-Language, Cookie"
-	          ], 
-	          "Server": [
-	            "nginx/1.6.2"
-	          ], 
-	          "Connection": [
-	            "keep-alive"
-	          ], 
-	          "Allow": [
-	            "GET, PUT, DELETE, HEAD, OPTIONS, PATCH"
-	          ], 
-	          "Date": [
-	            "Wed, 08 Apr 2015 17:15:03 GMT"
-	          ], 
-	          "X-Frame-Options": [
-	            "DENY"
-	          ], 
-	          "Content-Type": [
-	            "application/json"
-	          ]
-	        }, 
-	        "body": {
-	          "string": "{\"id\": 52, \"created\": \"2015-04-08T17:14:57Z\", \"updated\": \"2015-04-08T17:14:57Z\", \"user\": 37, \"event\": \"payment.status.changed\", \"target\": \"https://my.callback.url/\"}", 
-	          "encoding": "UTF-8"
-	        }, 
-	        "http_version": null
-	      }
-		}
-  ], 
-  "recorded_with": "VCR 2.9.3"
+    "version": 1, 
+    "interactions": [
+        {
+            "request": {
+                "body": "event=payment.status.changed&target=https%3A%2F%2Fmy.callback.url%2F", 
+                "headers": {
+                    "Content-Length": [
+                        "68"
+                    ], 
+                    "Accept-Encoding": [
+                        "gzip, deflate"
+                    ], 
+                    "Accept": [
+                        "*/*"
+                    ], 
+                    "User-Agent": [
+                        "python-requests/2.7.0 CPython/2.7.10 Darwin/15.0.0"
+                    ], 
+                    "Connection": [
+                        "keep-alive"
+                    ], 
+                    "Beyonic-Version": [
+                        "v2"
+                    ], 
+                    "Content-Type": [
+                        "application/x-www-form-urlencoded"
+                    ]
+                }, 
+                "method": "POST", 
+                "uri": "http://localhost:8000/api/webhooks"
+            }, 
+            "response": {
+                "status": {
+                    "message": "CREATED", 
+                    "code": 201
+                }, 
+                "headers": {
+                    "content-language": [
+                        "en"
+                    ], 
+                    "vary": [
+                        "Accept, Accept-Language, Cookie"
+                    ], 
+                    "server": [
+                        "Werkzeug/0.9.4 Python/2.7.10"
+                    ], 
+                    "connection": [
+                        "close"
+                    ], 
+                    "allow": [
+                        "GET, POST, HEAD, OPTIONS"
+                    ], 
+                    "date": [
+                        "Wed, 11 Nov 2015 05:02:34 GMT"
+                    ], 
+                    "x-frame-options": [
+                        "SAMEORIGIN"
+                    ], 
+                    "content-type": [
+                        "application/json"
+                    ]
+                }, 
+                "body": {
+                    "string": "{\"id\":242,\"created\":\"2015-11-11T05:02:34.304101Z\",\"updated\":\"2015-11-11T05:02:34.304141Z\",\"event\":\"payment.status.changed\",\"target\":\"https://my.callback.url/\",\"user\":42}"
+                }
+            }
+        }
+    ]
 }

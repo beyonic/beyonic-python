@@ -32,7 +32,7 @@ class RequestsClientTest(BeyonicTestCase):
     @tape.use_cassette('webhooks_list.json')
     def test001_webhooks_list(self):
         webhooks = self.beyonic.Webhook.list(client=self.client)
-        self.assertLessEqual(1, len(webhooks))
+        self.assertLessEqual(1, len(webhooks.results))
         
     
         
@@ -116,7 +116,7 @@ class RequestsClientTest(BeyonicTestCase):
         self.assertLessEqual(1, len(webhooks))
 
         #updating individual object
-        webhook = webhooks[0]
+        webhook = webhooks.results[0]
         new_target = "https://mysite.com/callbacks/payment/saved/1"
         webhook.target = new_target
         webhook.save()
@@ -129,7 +129,7 @@ class RequestsClientTest(BeyonicTestCase):
     @tape.use_cassette('payments_list.json')
     def test008_payments_list(self):
         payments = self.beyonic.Payment.list(client=self.client)
-        self.assertLessEqual(1, len(payments))
+        self.assertLessEqual(1, len(payments.results))
         
     
     
@@ -182,7 +182,7 @@ class RequestsClientTest(BeyonicTestCase):
     @tape.use_cassette('collections_list.json')
     def test011_collection_list(self):
         collections = self.beyonic.Collection.list(client=self.client)
-        self.assertLessEqual(1, len(collections))
+        self.assertLessEqual(1, len(collections.results))
         
     
     
@@ -191,7 +191,7 @@ class RequestsClientTest(BeyonicTestCase):
     def test012_collection_get(self):
         with tape.use_cassette('collections_list.json'):
             collections = self.beyonic.Collection.list(client=self.client)
-            collection_id = collections[0]['id']
+            collection_id = collections.results[0]['id']
         collection = self.beyonic.Collection.get(id=collection_id, client=self.client)
         self.assertEqual(collection.id, collection.id)
     
@@ -231,7 +231,7 @@ class RequestsClientTest(BeyonicTestCase):
     @tape.use_cassette('collection_request_list.json')
     def test016_list_collection_requests(self):
         collections_requests = self.beyonic.CollectionRequest.list(client=self.client)
-        self.assertLessEqual(1, len(collections_requests))
+        self.assertLessEqual(1, len(collections_requests.results))
         
     
     

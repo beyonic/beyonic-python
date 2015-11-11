@@ -34,12 +34,12 @@ class AbstractAPI(GenericObject):
     @classmethod
     def list(cls, client=None, **kwargs):
         """
-        This will return list of resorces.
+        This will return list of resources.
         """
         objs = cls.get_client(client).get(**kwargs)
 
         #setting client object for each of the return object so that it can be used while saving data
-        for obj in objs:
+        for obj in objs.results:
             if obj.id:
                 base = cls.get_url()
                 url = "%s/%s" % (base, obj.id)

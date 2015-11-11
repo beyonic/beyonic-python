@@ -1,80 +1,64 @@
 {
-  "recorded_with": "VCR 2.9.3", 
-  "interactions": [
-    {
-      "request": {
-        "body": {
-          "string": "", 
-          "encoding": "US-ASCII"
-        }, 
-        "headers": {
-          "Accept": [
-            "*/*; q=0.5, application/xml"
-          ], 
-          "Beyonic-Version": [
-            "v1"
-          ], 
-          "Accept-Encoding": [
-            "gzip, deflate"
-          ], 
-          "Authorization": [
-            "Token d349087313cc7a6627d77ab61163d4dab6449b4c"
-          ]
-        }, 
-        "method": "GET", 
-        "uri": "https://staging.beyonic.com/api/collections?remote_transaction_id=12132&phonenumber=%2B2547227272723"
-      }, 
-      "response": {
-        "status": {
-          "message": "OK", 
-          "code": 200
-        }, 
-        "headers": {
-          "X-Xss-Protection": [
-            "1; mode=block"
-          ], 
-          "Content-Language": [
-            "en-us"
-          ], 
-          "X-Content-Type-Options": [
-            "nosniff"
-          ], 
-          "Transfer-Encoding": [
-            "chunked"
-          ], 
-          "Strict-Transport-Security": [
-            "max-age=31536000; includeSubDomains", 
-            "max-age=31536000; includeSubDomains"
-          ], 
-          "Vary": [
-            "Accept, Accept-Language, Cookie"
-          ], 
-          "Server": [
-            "nginx/1.6.2"
-          ], 
-          "Connection": [
-            "keep-alive"
-          ], 
-          "Allow": [
-            "GET, HEAD, OPTIONS"
-          ], 
-          "Date": [
-            "Fri, 10 Apr 2015 15:37:24 GMT"
-          ], 
-          "X-Frame-Options": [
-            "DENY"
-          ], 
-          "Content-Type": [
-            "application/json"
-          ]
-        }, 
-        "body": {
-          "string": "[{\"id\": 1, \"remote_transaction_id\": 12312, \"organization\": 5, \"amount\": \"100.0000\", \"currency\": 2, \"phonenumber\": \"+2547227272723\", \"payment_date\": \"2014-09-11T09:00:12Z\", \"reference\": \"xwd\", \"status\": \"successful\", \"created\": \"2014-09-17T12:22:06Z\", \"author\": null, \"modified\": \"2014-09-17T12:22:07Z\", \"updated_by\": null}]", 
-          "encoding": "UTF-8"
-        }, 
-        "http_version": null
-      }, 
-      "recorded_at": "Fri, 10 Apr 2015 15:37:24 GMT"
-    }
-  ]
+    "version": 1, 
+    "interactions": [
+        {
+            "request": {
+                "body": null, 
+                "headers": {
+                    "Connection": [
+                        "keep-alive"
+                    ], 
+                    "Beyonic-Version": [
+                        "v2"
+                    ], 
+                    "Accept-Encoding": [
+                        "gzip, deflate"
+                    ], 
+                    "Accept": [
+                        "*/*"
+                    ], 
+                    "User-Agent": [
+                        "python-requests/2.7.0 CPython/2.7.10 Darwin/15.0.0"
+                    ]
+                }, 
+                "method": "GET", 
+                "uri": "http://localhost:8000/api/collections?phonenumber=%2B2547227272723&remote_transaction_id=12132"
+            }, 
+            "response": {
+                "status": {
+                    "message": "OK", 
+                    "code": 200
+                }, 
+                "headers": {
+                    "content-language": [
+                        "en"
+                    ], 
+                    "vary": [
+                        "Accept, Accept-Language, Cookie"
+                    ], 
+                    "server": [
+                        "Werkzeug/0.9.4 Python/2.7.10"
+                    ], 
+                    "connection": [
+                        "close"
+                    ], 
+                    "allow": [
+                        "GET, HEAD, OPTIONS"
+                    ], 
+                    "date": [
+                        "Wed, 11 Nov 2015 05:02:35 GMT"
+                    ], 
+                    "x-frame-options": [
+                        "SAMEORIGIN"
+                    ], 
+                    "content-type": [
+                        "application/json"
+                    ]
+                }, 
+                "body": {
+                    "string": "{\"count\":1,\"next\":null,\"previous\":null,\"results\":[{\"id\":2,\"remote_transaction_id\":\"12132\",\"organization\":1,\"amount\":\"20.0000\",\"currency\":\"USD\",\"phonenumber\":\"+2547227272723\",\"payment_date\":\"2015-12-12T00:00:00Z\",\"reference\":null,\"status\":\"successful\",\"created\":\"2015-08-01T16:49:48Z\",\"author\":null,\"modified\":\"2015-08-01T16:55:38Z\",\"updated_by\":null,\"collection_request\":null}]}"
+                }
+            }
+        }
+    ]
 }

@@ -1,80 +1,64 @@
 {
-  "recorded_with": "VCR 2.9.3", 
-  "interactions": [
-    {
-      "request": {
-        "body": {
-          "string": "", 
-          "encoding": "US-ASCII"
-        }, 
-        "headers": {
-          "Accept": [
-            "*/*; q=0.5, application/xml"
-          ], 
-          "Beyonic-Version": [
-            "v1"
-          ], 
-          "Accept-Encoding": [
-            "gzip, deflate"
-          ], 
-          "Authorization": [
-            "Token d349087313cc7a6627d77ab61163d4dab6449b4c"
-          ]
-        }, 
-        "method": "GET", 
-        "uri": "https://staging.beyonic.com/api/collections?claim=True&amount=200&phonenumber=%2B254727843600"
-      }, 
-      "response": {
-        "status": {
-          "message": "OK", 
-          "code": 200
-        }, 
-        "headers": {
-          "X-Xss-Protection": [
-            "1; mode=block"
-          ], 
-          "Content-Language": [
-            "en-us"
-          ], 
-          "X-Content-Type-Options": [
-            "nosniff"
-          ], 
-          "Transfer-Encoding": [
-            "chunked"
-          ], 
-          "Strict-Transport-Security": [
-            "max-age=31536000; includeSubDomains", 
-            "max-age=31536000; includeSubDomains"
-          ], 
-          "Vary": [
-            "Accept, Accept-Language, Cookie"
-          ], 
-          "Server": [
-            "nginx/1.6.2"
-          ], 
-          "Connection": [
-            "keep-alive"
-          ], 
-          "Allow": [
-            "GET, HEAD, OPTIONS"
-          ], 
-          "Date": [
-            "Tue, 14 Apr 2015 23:48:22 GMT"
-          ], 
-          "X-Frame-Options": [
-            "DENY"
-          ], 
-          "Content-Type": [
-            "application/json"
-          ]
-        }, 
-        "body": {
-          "string": "[{\"id\": 1, \"remote_transaction_id\": null, \"organization\": 5, \"amount\": \"100.0000\", \"currency\": 2, \"phonenumber\": \"+254727843600\", \"payment_date\": \"2014-09-11T09:00:12Z\", \"reference\": \"xwd\", \"status\": \"successful\", \"created\": \"2014-09-17T12:22:06Z\", \"author\": null, \"modified\": \"2014-09-17T12:22:07Z\", \"updated_by\": null}]", 
-          "encoding": "UTF-8"
-        }, 
-        "http_version": null
-      }, 
-      "recorded_at": "Tue, 14 Apr 2015 23:48:22 GMT"
-    }
-  ]
+    "version": 1, 
+    "interactions": [
+        {
+            "request": {
+                "body": null, 
+                "headers": {
+                    "Connection": [
+                        "keep-alive"
+                    ], 
+                    "Beyonic-Version": [
+                        "v2"
+                    ], 
+                    "Accept-Encoding": [
+                        "gzip, deflate"
+                    ], 
+                    "Accept": [
+                        "*/*"
+                    ], 
+                    "User-Agent": [
+                        "python-requests/2.7.0 CPython/2.7.10 Darwin/15.0.0"
+                    ]
+                }, 
+                "method": "GET", 
+                "uri": "http://localhost:8000/api/collections?claim=True&amount=200&phonenumber=%2B254727843600"
+            }, 
+            "response": {
+                "status": {
+                    "message": "OK", 
+                    "code": 200
+                }, 
+                "headers": {
+                    "content-language": [
+                        "en"
+                    ], 
+                    "vary": [
+                        "Accept, Accept-Language, Cookie"
+                    ], 
+                    "server": [
+                        "Werkzeug/0.9.4 Python/2.7.10"
+                    ], 
+                    "connection": [
+                        "close"
+                    ], 
+                    "allow": [
+                        "GET, HEAD, OPTIONS"
+                    ], 
+                    "date": [
+                        "Wed, 11 Nov 2015 05:02:35 GMT"
+                    ], 
+                    "x-frame-options": [
+                        "SAMEORIGIN"
+                    ], 
+                    "content-type": [
+                        "application/json"
+                    ]
+                }, 
+                "body": {
+                    "string": "{\"count\":0,\"next\":null,\"previous\":null,\"results\":[]}"
+                }
+            }
+        }
+    ]
 }
