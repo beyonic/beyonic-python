@@ -206,6 +206,10 @@ class ApiClient(object):
         if self._api_version:
             headers.update({"Beyonic-Version": self._api_version, })
 
+        headers.update({"Beyonic-Client": "Python", })
+        import setup
+        headers.update({"Beyonic-Client-Version": setup.VERSION, })
+
         return headers
 
     def _parse_response(self, response_content, status_code):
