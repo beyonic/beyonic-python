@@ -28,3 +28,9 @@ You can get detailed coverage report at cover/index.html, after tests has been r
 For mocks [vcrpy](https://github.com/kevin1024/vcrpy) is used.
 All recorded API interactions cassettes located on vcr_cassettes/ folder.
 They can be deleted, in this case on next tests run specs will access to real API and cassettes will be recorded again.
+
+### Releasing
+To release a new version:
+- Increment the version number in setup.py
+- Push all code
+- Run "python setup.py sdist upload -r pypi" to upload to pypi (You may need to follow the steps at http://peterdowns.com/posts/first-time-with-pypi.html the first time)
