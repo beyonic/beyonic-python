@@ -235,7 +235,7 @@ class RequestsClientTest(BeyonicTestCase):
 
     # getting accounts lit using the client
     @tape.use_cassette('accounts_list.json')
-    def test008_payments_list(self):
+    def test017_accounts_list(self):
         payments = self.beyonic.Account.list(client=self.client)
         self.assertLessEqual(1, len(payments.results))
 
