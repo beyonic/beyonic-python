@@ -12,7 +12,7 @@ if os.path.exists('README.md'):
     import shutil
     shutil.copyfile('README.md', 'README.txt')
 
-VERSION = "0.2.7"
+VERSION = "0.1.8"
 
 setup(
     name="beyonic",

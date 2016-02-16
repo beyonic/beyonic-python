@@ -1,6 +1,6 @@
 Changelog
 ============
 
-v0.2.7
+v0.1.8
 ----------
 - Added `Accounts API Wrapper` for interacting with the `accounts api`.
