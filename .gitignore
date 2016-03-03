@@ -6,3 +6,5 @@
 .pydevproject
 vagrant/*
 vagrant
+cover/
+beyonic.egg-info/
