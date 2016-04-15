@@ -1,0 +1,64 @@
+{
+    "version": 1, 
+    "interactions": [
+        {
+            "request": {
+                "body": null, 
+                "headers": {
+                    "Accept-Encoding": [
+                        "gzip, deflate"
+                    ], 
+                    "Accept": [
+                        "*/*"
+                    ], 
+                    "Beyonic-Version": [
+                        "v2"
+                    ], 
+                    "Connection": [
+                        "keep-alive"
+                    ], 
+                    "Beyonic-Client": [
+                        "Python"
+                    ], 
+                    "User-Agent": [
+                        "python-requests/2.9.1"
+                    ]
+                }, 
+                "method": "GET", 
+                "uri": "http://localhost:8000/api/accounts"
+            }, 
+            "response": {
+                "status": {
+                    "message": "OK", 
+                    "code": 200
+                }, 
+                "headers": {
+                    "content-language": [
+                        "en"
+                    ], 
+                    "vary": [
+                        "Accept, Accept-Language, Cookie"
+                    ], 
+                    "server": [
+                        "WSGIServer/0.1 Python/2.7.6"
+                    ], 
+                    "allow": [
+                        "GET, HEAD, OPTIONS"
+                    ], 
+                    "date": [
+                        "Mon, 08 Feb 2016 09:43:44 GMT"
+                    ], 
+                    "x-frame-options": [
+                        "SAMEORIGIN"
+                    ], 
+                    "content-type": [
+                        "application/json"
+                    ]
+                }, 
+                "body": {
+                    "string": "{\"count\":2,\"next\":null,\"previous\":null,\"results\":[{\"id\":1,\"organization\":2,\"balance\":0,\"currency\":\"KES\",\"status\":\"inactive\",\"created\":\"2016-01-24T19:30:40Z\",\"author\":7,\"modified\":\"2016-01-26T06:02:17Z\",\"updated_by\":7},{\"id\":3,\"organization\":2,\"balance\":0,\"currency\":\"UGX\",\"status\":\"inactive\",\"created\":\"2016-01-24T21:07:05Z\",\"author\":7,\"modified\":\"2016-01-26T16:21:53Z\",\"updated_by\":7}]}"
+                }
+            }
+        }
+    ]
+}

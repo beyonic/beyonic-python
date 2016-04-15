@@ -33,4 +33,4 @@ They can be deleted, in this case on next tests run specs will access to real AP
 To release a new version:
 - Increment the version number in setup.py
 - Push all code
-- Run "python setup.py sdist upload -r pypi" to upload to pypi (You may need to follow the steps at http://peterdowns.com/posts/first-time-with-pypi.html the first time)
+- Run "python setup.py sdist upload -r pypi" to upload to pypi (You may need to follow the steps at http://peterdowns.com/posts/first-time-with-pypi.html)
