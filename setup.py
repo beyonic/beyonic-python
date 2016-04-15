@@ -1,12 +1,11 @@
 import os
-import sys
 from setuptools import setup
+import os.path
+
 
 def read(*rnames):
     return open(os.path.join(os.path.dirname(__file__), *rnames)).read()
 
-from setuptools import setup
-import os.path
 
 if os.path.exists('README.md'):
     import shutil
