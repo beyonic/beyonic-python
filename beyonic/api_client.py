@@ -8,7 +8,7 @@ import textwrap
 from beyonic.errors import BeyonicError, ResponseError
 from beyonic.resources import GenericObject
 import os
-
+import beyonic
 # let's try to import requests if its available
 try:
     import requests
@@ -207,8 +207,7 @@ class ApiClient(object):
             headers.update({"Beyonic-Version": self._api_version, })
 
         headers.update({"Beyonic-Client": "Python", })
-        import setup
-        headers.update({"Beyonic-Client-Version": setup.VERSION, })
+        headers.update({"Beyonic-Client-Version": beyonic.__version__, })
 
         return headers
 

@@ -1,18 +1,18 @@
 import os
-import sys
 from setuptools import setup
+import os.path
+import beyonic
+
 
 def read(*rnames):
     return open(os.path.join(os.path.dirname(__file__), *rnames)).read()
 
-from setuptools import setup
-import os.path
 
 if os.path.exists('README.md'):
     import shutil
     shutil.copyfile('README.md', 'README.txt')
 
-VERSION = "0.1.8"
+VERSION = beyonic.__version__
 
 setup(
     name="beyonic",
