@@ -14,3 +14,5 @@ from beyonic.apis.payment import Payment
 from beyonic.apis.webhook import Webhook
 from beyonic.apis.collection import Collection
 from beyonic.apis.collectionrequest import CollectionRequest
+
+__version__ = '"0.1.8"'
