@@ -15,5 +15,6 @@ from beyonic.apis.webhook import Webhook
 from beyonic.apis.collection import Collection
 from beyonic.apis.collectionrequest import CollectionRequest
 from beyonic.apis.account import Account
+from beyonic.apis.contact import Contact
 
 __version__ = '"0.1.8"'
