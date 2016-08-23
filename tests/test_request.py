@@ -211,7 +211,7 @@ class RequestsClientTest(BeyonicTestCase):
 
 
     #creating collection request
-    @tape.use_cassette('collection_request_create.json')
+    # @tape.use_cassette('collection_request_create.json')
     def test015_create_collectionrequst(self):
         phonenumber = "+256772781923"
         amount = '3000'
@@ -238,6 +238,42 @@ class RequestsClientTest(BeyonicTestCase):
     def test017_accounts_list(self):
         payments = self.beyonic.Account.list(client=self.client)
         self.assertLessEqual(1, len(payments.results))
+
+
+    # creating collection request with metadata dot notation
+    @tape.use_cassette('collection_request_create_with_dot_notation_metadata.json')
+    def test018_create_collectionrequst_with_dot_notation_metadata(self):
+        phonenumber = "+256772781923"
+        amount = '3000'
+        currency = 'UGX'
+        kwargs = {'metadata.my_id': '123ASDAsd123'}
+        collection_request = self.beyonic.CollectionRequest.create(
+            client=self.client, phonenumber=phonenumber, amount=amount, currency=currency, **kwargs)
+        self.assertIn(phonenumber, collection_request.phonenumber)
+        self.assertEqual(currency, collection_request.currency)
+        self.assertEqual('123ASDAsd123', collection_request.metadata.get('my_id'))
+
+        refreshed_collection_request = self.beyonic.CollectionRequest.get(id=collection_request.id, client=self.client)
+        self.assertIn(phonenumber, refreshed_collection_request.phonenumber)
+        self.assertEqual(currency, refreshed_collection_request.currency)
+
+
+    # creating collection request with metadata array notation
+    @tape.use_cassette('collection_request_create_with_array_notation_metadata.json')
+    def test019_create_collectionrequst_with_array_notation_metadata(self):
+        phonenumber = "+256772781923"
+        amount = '3000'
+        currency = 'UGX'
+        kwargs = {'metadata': [{'my_id': '123ASDAsd123'}]}
+        collection_request = self.beyonic.CollectionRequest.create(
+            client=self.client, phonenumber=phonenumber, amount=amount, currency=currency, **kwargs)
+        self.assertIn(phonenumber, collection_request.phonenumber)
+        self.assertEqual(currency, collection_request.currency)
+        self.assertEqual('123ASDAsd123', collection_request.metadata.get('my_id'))
+
+        refreshed_collection_request = self.beyonic.CollectionRequest.get(id=collection_request.id, client=self.client)
+        self.assertIn(phonenumber, refreshed_collection_request.phonenumber)
+        self.assertEqual(currency, refreshed_collection_request.currency)
 
 
 
