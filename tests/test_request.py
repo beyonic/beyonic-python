@@ -243,9 +243,9 @@ class RequestsClientTest(BeyonicTestCase):
     # creating collection request with metadata dot notation
     @tape.use_cassette('collection_request_create_with_dot_notation_metadata.json')
     def test018_create_collectionrequst_with_dot_notation_metadata(self):
-        phonenumber = "+256772781923"
+        phonenumber = "+40715441309"
         amount = '3000'
-        currency = 'UGX'
+        currency = 'BXC'
         kwargs = {'metadata.my_id': '123ASDAsd123'}
         collection_request = self.beyonic.CollectionRequest.create(
             client=self.client, phonenumber=phonenumber, amount=amount, currency=currency, **kwargs)
@@ -258,15 +258,14 @@ class RequestsClientTest(BeyonicTestCase):
         self.assertEqual(currency, refreshed_collection_request.currency)
 
 
-    # creating collection request with metadata array notation
-    @tape.use_cassette('collection_request_create_with_array_notation_metadata.json')
+    # creating collection request with metadata dict notation
+    @tape.use_cassette('collection_request_create_with_dict_notation_metadata.json')
     def test019_create_collectionrequst_with_array_notation_metadata(self):
-        phonenumber = "+256772781923"
+        phonenumber = "+40715441309"
         amount = '3000'
-        currency = 'UGX'
-        kwargs = {'metadata': [{'my_id': '123ASDAsd123'}]}
+        currency = 'BXC'
         collection_request = self.beyonic.CollectionRequest.create(
-            client=self.client, phonenumber=phonenumber, amount=amount, currency=currency, **kwargs)
+            client=self.client, phonenumber=phonenumber, amount=amount, currency=currency, metadata={'my_id': '123ASDAsd123'})
         self.assertIn(phonenumber, collection_request.phonenumber)
         self.assertEqual(currency, collection_request.currency)
         self.assertEqual('123ASDAsd123', collection_request.metadata.get('my_id'))

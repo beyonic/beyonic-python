@@ -28,13 +28,12 @@ class BaseClient(object):
         self._verify_ssl_certs = verify_ssl_certs
 
     def transform_params_metadata(self, params):
-        # transform metadata to dot format if it's passed in the array format
+        # transform metadata to dot format if it's passed in the dict format
         if params and params.get('metadata', None):
             metadata = params.get('metadata')
             transformed_metadata = {}
-            for item in metadata:
-                for key, value in item.iteritems():
-                    transformed_metadata['metadata.{}'.format(key)] = value
+            for key, value in metadata.iteritems():
+                transformed_metadata['metadata.{}'.format(key)] = value
             params.pop('metadata')
             params.update(transformed_metadata)
         return params
