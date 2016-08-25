@@ -264,9 +264,8 @@ class RequestsClientTest(BeyonicTestCase):
         phonenumber = "+40715441309"
         amount = '3000'
         currency = 'BXC'
-        kwargs = {'metadata': {'my_id': '123ASDAsd123'}}
         collection_request = self.beyonic.CollectionRequest.create(
-            client=self.client, phonenumber=phonenumber, amount=amount, currency=currency, **kwargs)
+            client=self.client, phonenumber=phonenumber, amount=amount, currency=currency, metadata={'my_id': '123ASDAsd123'})
         self.assertIn(phonenumber, collection_request.phonenumber)
         self.assertEqual(currency, collection_request.currency)
         self.assertEqual('123ASDAsd123', collection_request.metadata.get('my_id'))
