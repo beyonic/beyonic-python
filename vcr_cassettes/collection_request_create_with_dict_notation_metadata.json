@@ -3,7 +3,7 @@
     "interactions": [
         {
             "request": {
-                "body": "metadata.my_id=123ASDAsd123&amount=3000&phonenumber=%2B40715441309&currency=BXC",
+                "body": "currency=BXC&amount=3000&phonenumber=%2B40715441309&metadata.my_id=123ASDAsd123",
                 "headers": {
                     "Content-Length": [
                         "79"
@@ -83,7 +83,7 @@
                     ]
                 },
                 "body": {
-                    "string": "{\"id\":64,\"organization\":2,\"amount\":\"3000.0000\",\"currency\":\"BXC\",\"phonenumber\":\"+40715441309\",\"reason\":\"\",\"metadata\":{\"my_id\":\"123ASDAsd123\"},\"created\":\"2016-08-25T04:55:32.181075Z\",\"author\":1,\"modified\":\"2016-08-25T04:55:32.181116Z\",\"updated_by\":1,\"collection\":null,\"success_message\":\"\",\"instructions\":null,\"send_instructions\":false}"
+                    "string": "{\"id\":65,\"organization\":2,\"amount\":\"3000.0000\",\"currency\":\"BXC\",\"phonenumber\":\"+40715441309\",\"reason\":\"\",\"metadata\":{\"my_id\":\"123ASDAsd123\"},\"created\":\"2016-08-25T04:55:32.307997Z\",\"author\":1,\"modified\":\"2016-08-25T04:55:32.308029Z\",\"updated_by\":1,\"collection\":null,\"success_message\":\"\",\"instructions\":null,\"send_instructions\":false}"
                 }
             }
         },
@@ -114,7 +114,7 @@
                     ]
                 },
                 "method": "GET",
-                "uri": "http://staging.beyonic.com/api/collectionrequests/64"
+                "uri": "http://staging.beyonic.com/api/collectionrequests/65"
             },
             "response": {
                 "status": {
@@ -163,7 +163,7 @@
                     ]
                 },
                 "body": {
-                    "string": "{\"id\":64,\"organization\":2,\"amount\":\"3000.0000\",\"currency\":\"BXC\",\"phonenumber\":\"+40715441309\",\"reason\":\"\",\"metadata\":{\"my_id\":\"123ASDAsd123\"},\"created\":\"2016-08-25T04:55:32.181075Z\",\"author\":1,\"modified\":\"2016-08-25T04:55:32.181116Z\",\"updated_by\":1,\"collection\":null,\"success_message\":\"\",\"instructions\":null,\"send_instructions\":false}"
+                    "string": "{\"id\":65,\"organization\":2,\"amount\":\"3000.0000\",\"currency\":\"BXC\",\"phonenumber\":\"+40715441309\",\"reason\":\"\",\"metadata\":{\"my_id\":\"123ASDAsd123\"},\"created\":\"2016-08-25T04:55:32.307997Z\",\"author\":1,\"modified\":\"2016-08-25T04:55:32.308029Z\",\"updated_by\":1,\"collection\":null,\"success_message\":\"\",\"instructions\":null,\"send_instructions\":false}"
                 }
             }
         }
