@@ -1,7 +1,7 @@
 # Beyonic API Python bindings
 
 #default values if any
-DEFAULT_ENDPOINT_BASE = 'https://app.beyonic.com/api/'
+DEFAULT_ENDPOINT_BASE = 'https://app.beyonic.us/api/'
 
 #config
 api_key = None
@@ -18,4 +18,4 @@ from beyonic.apis.account import Account
 from beyonic.apis.contact import Contact
 from beyonic.apis.transaction import Transaction
 
-__version__ = "0.1.11"
+__version__ = "0.1.12"
