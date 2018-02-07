@@ -18,4 +18,4 @@ from beyonic.apis.account import Account
 from beyonic.apis.contact import Contact
 from beyonic.apis.transaction import Transaction
 
-__version__ = "0.1.11"
+__version__ = "0.1.12"
