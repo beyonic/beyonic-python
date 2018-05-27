@@ -6,7 +6,7 @@ import os
 import logging
 
 from nose import SkipTest
-from config import BeyonicTestCase, tape
+from .config import BeyonicTestCase, tape
 from beyonic.api_client import RequestsClient
 
 '''
