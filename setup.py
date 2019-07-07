@@ -8,13 +8,10 @@ def read(*rnames):
     return open(os.path.join(os.path.dirname(__file__), *rnames)).read()
 
 
-if os.path.exists('README.md'):
-    import shutil
-    shutil.copyfile('README.md', 'README.txt')
-
 VERSION = beyonic.__version__
 
 from os import path
+from io import open
 this_directory = path.abspath(path.dirname(__file__))
 with open(path.join(this_directory, 'README.md'), encoding='utf-8') as f:
     long_description = f.read()

@@ -37,5 +37,5 @@ Please see DEVELOPMENT.md for information on adding installing requirements, add
 0.1.8
 - Added `Accounts API Wrapper` for interacting with the `accounts api`.
 
-0.1.13
+0.1.14
 - Added Network and Currency APIs and ability to set Duplicate-Check-Key header for each request
