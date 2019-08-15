@@ -20,4 +20,4 @@ from beyonic.apis.transaction import Transaction
 from beyonic.apis.network import Network
 from beyonic.apis.currency import Currency
 
-__version__ = "0.1.14x"
+__version__ = "0.1.15"

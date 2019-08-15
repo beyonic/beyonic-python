@@ -32,7 +32,7 @@ class BaseClient(object):
         if params and params.get('metadata', None):
             metadata = params.get('metadata')
             transformed_metadata = {}
-            for key, value in metadata.iteritems():
+            for key, value in metadata.items():
                 transformed_metadata['metadata.{}'.format(key)] = value
             params.pop('metadata')
             params.update(transformed_metadata)
