@@ -1,22 +1,22 @@
-'''
+"""
 # This return the api client. It should first check if requests is installed, if its installed then returns RequestsClient,
 # if requests is not installed then check for urlfetch lib, if its installed then return its client UrlfetchClient
 # if both of them not installed then throws the exception
-'''
+"""
 
 import textwrap
 from beyonic.errors import BeyonicError, ResponseError
 from beyonic.resources import GenericObject
 import os
 import beyonic
-# let's try to import requests if its available
+
+# Let's try to import requests if its available
 try:
     import requests
 except ImportError:
     requests = None
 
-
-# let's try to import urlfetch
+# Let's try to import urlfetch
 try:
     from google.appengine.api import urlfetch
 except ImportError:
@@ -44,7 +44,8 @@ class RequestsClient(BaseClient):
 
     def request(self, method, url, headers, params=None):
         if not requests:
-            raise BeyonicError('requests is not installed. Please install/setup it first using pip. e.g. pip install requests>=1.0')
+            raise BeyonicError(
+                'requests is not installed. Please install/setup it first using pip. e.g. pip install requests>=1.0')
 
         kwargs = {}
 
@@ -57,18 +58,18 @@ class RequestsClient(BaseClient):
             try:
                 if method.upper() == 'GET':
                     result = requests.request(method,
-                                          url,
-                                          headers=headers,
-                                          params=params,
-                                          timeout=80,
-                                          **kwargs)
+                                              url,
+                                              headers=headers,
+                                              params=params,
+                                              timeout=80,
+                                              **kwargs)
                 else:
                     result = requests.request(method,
-                                          url,
-                                          headers=headers,
-                                          data=self.transform_params_metadata(params),
-                                          timeout=80,
-                                          **kwargs)
+                                              url,
+                                              headers=headers,
+                                              data=self.transform_params_metadata(params),
+                                              timeout=80,
+                                              **kwargs)
             except TypeError as e:
                 raise TypeError(
                     'Please upgrade your request library. The '
@@ -76,11 +77,11 @@ class RequestsClient(BaseClient):
 
             content = result.content
             status_code = result.status_code
+            return content, status_code
         except Exception as e:
             # Would catch just requests.exceptions.RequestException, but can
             # also raise ValueError, RuntimeError, etc.
             self._handle_request_error(e)
-        return content, status_code
 
     def _handle_request_error(self, e):
         msg = ("Unexpected error communicating with Beyonic API.")
@@ -134,22 +135,23 @@ def get_default_http_client(*args, **kwargs):
     elif requests:
         impl = RequestsClient
     else:
-        # none of them is available so let's throw an error
-        raise BeyonicError(
-            'Either of requests or urlfetch is not installed. Please install either of them using requirements.txt')
+        # None of them is available so let's throw an error
+        raise BeyonicError('Either of requests or urlfetch is not installed. '
+                           'Please install either of them using requirements.txt')
 
     return impl(*args, **kwargs)
 
 
-'''
+"""
 'API Client class interacts with api using available RequestClient or UrlFetchClient
-'''
+"""
 
 
 class ApiClient(object):
     """
     A client for the api
     """
+
     def __init__(self, api_key=None, url=None, client=None, verify_ssl_certs=True, api_version=None):
         # if not passed then let's try to get it from env variable
         if not api_key:
@@ -170,46 +172,50 @@ class ApiClient(object):
         self._url = url
 
     def get(self, **kwargs):
-        '''
+        """
         Makes an HTTP GET request to the  API. Any keyword arguments will
         be converted to query string parameters.
-        '''
+        """
         return self._request("get", **kwargs)
 
     def post(self, **kwargs):
-        '''
+        """
         Makes an HTTP POST request to the  API.
-        '''
+        """
         return self._request("post", **kwargs)
 
     def put(self, **kwargs):
-        '''
+        """
         Makes an HTTP PUT request to the  API.
-        '''
+        """
         return self._request("put", **kwargs)
 
     def patch(self, **kwargs):
-        '''
+        """
         Makes an HTTP patch request to the  API.
-        '''
+        """
         return self._request("patch", **kwargs)
 
     def delete(self, **kwargs):
-        '''
+        """
         Makes an HTTP DELETE request to the  API.
-        '''
+        """
         return self._request("delete", **kwargs)
 
     def _request(self, method, **kwargs):
+        # Check if duplicate_check_key is set in kwargs, and if so, add it to the header_overrides
+        duplicate_check_key = kwargs.pop('duplicate_check_key', None)
+        header_overrides = {'Duplicate-Check-Key': duplicate_check_key} if duplicate_check_key else {}
+
         response_content, status_code = self._client.request(
             method=method,
             url=self._url,
-            headers=self._build_headers(),
+            headers=self._build_headers(header_overrides=header_overrides),
             params=kwargs,
         )
         return self._parse_response(response_content, status_code)
 
-    def _build_headers(self):
+    def _build_headers(self, **kwargs):
         headers = {}
         if self._api_key:
             headers.update({"Authorization": "Token %s" % self._api_key, })
@@ -219,6 +225,10 @@ class ApiClient(object):
 
         headers.update({"Beyonic-Client": "Python", })
         headers.update({"Beyonic-Client-Version": beyonic.__version__, })
+
+        # Override headers
+        if 'header_overrides' in kwargs:
+            headers.update(kwargs['header_overrides'])
 
         return headers
 
@@ -230,7 +240,7 @@ class ApiClient(object):
             raise self._exception_for_response(response_content, status_code)
 
     def _value_for_response(self, response_content, status_code):
-        #status_code 204 is for delete so for it retruning True
+        # Status_code 204 is for delete so for it returning True
         if response_content and status_code != 204:
             return GenericObject.from_json(response_content)
         else:
@@ -239,6 +249,3 @@ class ApiClient(object):
     def _exception_for_response(self, response_content, status_code):
         # TODO need to handle the all the status
         return ResponseError("%d error: %s" % (status_code, response_content,))
-
-
-

@@ -38,7 +38,7 @@ class AbstractAPI(GenericObject):
         """
         objs = cls.get_client(client).get(**kwargs)
 
-        #setting client object for each of the return object so that it can be used while saving data
+        # Setting client object for each of the return object so that it can be used while saving data
         for obj in objs.results:
             if obj.id:
                 base = cls.get_url()
@@ -57,15 +57,15 @@ class AbstractAPI(GenericObject):
         return cls.get_client(client).post(**kwargs)
 
     @classmethod
-    def get(cls, id, client=None, **kwargs):
+    def get(cls, object_id, client=None, **kwargs):
         """
         This will return the single object
         """
-        if not id:
-            raise BeyonicError('Invalid ID or ID hasn\'t been specified')
+        if not object_id:
+            raise BeyonicError("Invalid ID or ID has not been specified")
 
         base = cls.get_url()
-        url = "%s/%s" % (base, id)
+        url = "%s/%s" % (base, object_id)
         api_client = cls.get_client(client)
         api_client.set_url(url)
         obj = api_client.get(**kwargs)
@@ -73,28 +73,29 @@ class AbstractAPI(GenericObject):
         return obj
 
     @classmethod
-    def update(cls, id, client=None, **kwargs):
+    def update(cls, object_id, client=None, **kwargs):
         """
         This will update the object
         """
-        if not id:
-            raise BeyonicError('Invalid ID or ID hasn\'t been specified')
+        if not object_id:
+            raise BeyonicError("Invalid ID or ID has not been specified")
+
         base = cls.get_url()
-        url = "%s/%s" % (base, id)
+        url = "%s/%s" % (base, object_id)
         api_client = cls.get_client(client)
         api_client.set_url(url)
         return api_client.patch(**kwargs)
 
     @classmethod
-    def delete(cls, id, client=None, **kwargs):
+    def delete(cls, object_id, client=None, **kwargs):
         """
         This will return the single object
         """
-        if not id:
-            raise BeyonicError('Invalid ID or ID hasn\'t been specified')
+        if not object_id:
+            raise BeyonicError("Invalid ID or ID has not been specified")
 
         base = cls.get_url()
-        url = "%s/%s" % (base, id)
+        url = "%s/%s" % (base, object_id)
         api_client = cls.get_client(client)
         api_client.set_url(url)
         return api_client.delete(**kwargs)
