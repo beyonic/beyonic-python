@@ -19,5 +19,6 @@ from beyonic.apis.contact import Contact
 from beyonic.apis.transaction import Transaction
 from beyonic.apis.network import Network
 from beyonic.apis.currency import Currency
+from beyonic.apis.bank import Bank
 
-__version__ = "0.1.14"
+__version__ = "0.1.15"
