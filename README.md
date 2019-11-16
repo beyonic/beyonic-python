@@ -26,8 +26,16 @@ python setup.py install
 
 ## Usage
 
-Please visit http://support.beyonic.com/api for usage documentation
+Please visit https://apidocs.beyonic.com/ for usage documentation
 
 ## Development
 
 Please see DEVELOPMENT.md for information on adding installing requirements, adding new API methods and running tests
+
+## Changelog
+
+0.1.8
+- Added `Accounts API Wrapper` for interacting with the `accounts api`.
+
+0.1.14
+- Added Network and Currency APIs and ability to set Duplicate-Check-Key header for each request
