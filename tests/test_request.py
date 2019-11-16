@@ -1,13 +1,7 @@
 import unittest
-import random
-import shutil
-from time import sleep
-import os
-import logging
 
-from nose import SkipTest
-from config import BeyonicTestCase, tape
 from beyonic.api_client import RequestsClient
+from tests.config import BeyonicTestCase, tape
 
 '''
 # Uncomment below lines if you want to debug vcrpy
@@ -27,6 +21,12 @@ Request Client
 class RequestsClientTest(BeyonicTestCase):
     client = RequestsClient(verify_ssl_certs=False)
     # getting webhooks using requests client lib
+
+
+    @tape.use_cassette('banks_list.json')
+    def test_banks_list(self):
+        banks = self.beyonic.Bank.list(client=self.client)
+        self.assertEqual(1, len(banks.results))
 
 
     @tape.use_cassette('webhooks_list.json')

@@ -1,0 +1,55 @@
+{
+    "version": 1,
+    "interactions": [
+        {
+            "request": {
+                "body": null,
+                "headers": {
+                    "Connection": [
+                        "keep-alive"
+                    ],
+                    "Beyonic-Version": [
+                        "v5"
+                    ],
+                    "Accept-Encoding": [
+                        "gzip, deflate"
+                    ],
+                    "Accept": [
+                        "*/*"
+                    ],
+                    "User-Agent": [
+                        "python-requests/2.7.0 CPython/2.7.10 Darwin/15.0.0"
+                    ]
+                },
+                "method": "GET",
+                "uri": "https://example.com/banks"
+            },
+            "response": {
+                "status": {
+                    "message": "OK",
+                    "code": 200
+                },
+                "headers": {
+                    "content-language": [
+                        "en"
+                    ],
+                    "vary": [
+                        "Accept, Accept-Language, Cookie"
+                    ],
+                    "server": [
+                        "Werkzeug/0.9.4 Python/2.7.10"
+                    ],
+                    "connection": [
+                        "close"
+                    ],
+                    "allow": [
+                        "GET, HEAD, OPTIONS"
+                    ]
+                },
+                "body": {
+                    "string": {"count":1,"next":null,"previous":null,"results":[{"id":1,"name":"BANK OF AFRICA-UGANDA LTD","country":{"iso":"UG","iso3":"","iso_numeric":null,"name":"Uganda","printable_name":"Uganda","phone_prefix":"+256","supported":true},"swift_code":null}]}
+                }
+            }
+        }
+    ]
+}
