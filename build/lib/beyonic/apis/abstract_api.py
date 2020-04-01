@@ -57,15 +57,15 @@ class AbstractAPI(GenericObject):
         return cls.get_client(client).post(**kwargs)
 
     @classmethod
-    def get(cls, id, client=None, **kwargs):
+    def get(cls, object_id, client=None, **kwargs):
         """
         This will return the single object
         """
-        if not id:
+        if not object_id:
             raise BeyonicError("Invalid ID or ID has not been specified")
 
         base = cls.get_url()
-        url = "%s/%s" % (base, id)
+        url = "%s/%s" % (base, object_id)
         api_client = cls.get_client(client)
         api_client.set_url(url)
         obj = api_client.get(**kwargs)
@@ -73,15 +73,15 @@ class AbstractAPI(GenericObject):
         return obj
 
     @classmethod
-    def update(cls, id, client=None, **kwargs):
+    def update(cls, object_id, client=None, **kwargs):
         """
         This will update the object
         """
-        if not id:
+        if not object_id:
             raise BeyonicError("Invalid ID or ID has not been specified")
 
         base = cls.get_url()
-        url = "%s/%s" % (base, id)
+        url = "%s/%s" % (base, object_id)
         api_client = cls.get_client(client)
         api_client.set_url(url)
         return api_client.patch(**kwargs)

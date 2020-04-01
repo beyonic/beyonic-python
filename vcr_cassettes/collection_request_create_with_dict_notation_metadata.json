@@ -34,7 +34,7 @@
                     ]
                 },
                 "method": "POST",
-                "uri": "http://staging.beyonic.com/api/collectionrequests"
+                "uri": "http://localhost:8000/api/collectionrequests"
             },
             "response": {
                 "status": {
@@ -114,7 +114,7 @@
                     ]
                 },
                 "method": "GET",
-                "uri": "http://staging.beyonic.com/api/collectionrequests/65"
+                "uri": "http://localhost:8000/api/collectionrequests/65"
             },
             "response": {
                 "status": {

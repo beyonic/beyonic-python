@@ -1,13 +1,7 @@
 import unittest
-import random
-import shutil
-from time import sleep
-import os
-import logging
 
-from nose import SkipTest
-from .config import BeyonicTestCase, tape
 from beyonic.api_client import RequestsClient
+from .config import BeyonicTestCase, tape
 
 '''
 # Uncomment below lines if you want to debug vcrpy
@@ -18,23 +12,22 @@ vcr_log = logging.getLogger("vcr")
 vcr_log.setLevel(logging.DEBUG)
 '''
 
-
 """Test Cases"""
 
 '''
 Request Client
 '''
+
+
 class RequestsClientTest(BeyonicTestCase):
     client = RequestsClient(verify_ssl_certs=False)
-    # getting webhooks using requests client lib
 
+    # getting webhooks using requests client lib
 
     @tape.use_cassette('webhooks_list.json')
     def test001_webhooks_list(self):
         webhooks = self.beyonic.Webhook.list(client=self.client)
         self.assertLessEqual(1, len(webhooks.results))
-
-
 
     # creating new webhook
     @tape.use_cassette('webhooks_create.json')
@@ -45,7 +38,6 @@ class RequestsClientTest(BeyonicTestCase):
 
         self.assertEqual(target, webhook.target)
         self.assertEqual(event, webhook.event)
-
 
     # getting single webhook
     @tape.use_cassette('webhooks_create.json')
@@ -60,13 +52,12 @@ class RequestsClientTest(BeyonicTestCase):
         with tape.use_cassette('webhooks_get.json'):
             refreshed_webhook = self.beyonic.Webhook.get(id=webhook.id, client=self.client)
 
-        #hack
+        # hack
         str(refreshed_webhook)
         self.assertEqual(target, refreshed_webhook.target)
         self.assertEqual(event, refreshed_webhook.event)
 
-
-    #updating webhook
+    # updating webhook
     @tape.use_cassette('webhooks_update.json')
     def test004_webhook_update_get(self):
         web_id = 52
@@ -75,9 +66,7 @@ class RequestsClientTest(BeyonicTestCase):
         refreshed_webhook = self.beyonic.Webhook.get(id=webhook.id, client=self.client)
         self.assertEqual(new_target, refreshed_webhook.target)
 
-
-
-    #updating webhook using save
+    # updating webhook using save
     @tape.use_cassette('webhooks_save_get.json')
     def test005_webhook_save_get(self):
         web_id = 52
@@ -90,12 +79,10 @@ class RequestsClientTest(BeyonicTestCase):
         refreshed_webhook = self.beyonic.Webhook.get(id=webhook.id, client=self.client)
         self.assertEqual(new_target, refreshed_webhook.target)
 
-
-
-    #deleting webhook
+    # deleting webhook
     @tape.use_cassette('webhooks_delete.json')
     def test006_webhook_create_delete(self):
-        #creating new hook
+        # creating new hook
         target = "https://my.callback.url/"
         event = "payment.status.changed"
         webhook = self.beyonic.Webhook.create(client=self.client, event=event, target=target)
@@ -103,19 +90,17 @@ class RequestsClientTest(BeyonicTestCase):
         self.assertEqual(target, webhook.target)
         self.assertEqual(event, webhook.event)
 
-        #deleting the hook
+        # deleting the hook
         is_deleted = self.beyonic.Webhook.delete(webhook.id)
         self.assertTrue(is_deleted)
 
-
-
-    #list save
+    # list save
     @tape.use_cassette('webhooks_list_update.json')
     def test007_webhooks_list_save(self):
         webhooks = self.beyonic.Webhook.list(client=self.client)
         self.assertLessEqual(1, len(webhooks))
 
-        #updating individual object
+        # updating individual object
         webhook = webhooks.results[0]
         new_target = "https://mysite.com/callbacks/payment/saved/1"
         webhook.target = new_target
@@ -123,17 +108,13 @@ class RequestsClientTest(BeyonicTestCase):
         refreshed_webhook = self.beyonic.Webhook.get(id=webhook.id, client=self.client)
         self.assertEqual(new_target, refreshed_webhook.target)
 
-
-
     # getting payment using requests client lib
     @tape.use_cassette('payments_list.json')
     def test008_payments_list(self):
         payments = self.beyonic.Payment.list(client=self.client)
         self.assertLessEqual(1, len(payments.results))
 
-
-
-    #creating new payment
+    # creating new payment
     @tape.use_cassette('payments_create.json')
     def test009_payment_create(self):
         phonenumber = "+256773712831"
@@ -144,16 +125,14 @@ class RequestsClientTest(BeyonicTestCase):
         payment_type = 'money'
 
         payment = self.beyonic.Payment.create(client=self.client, phonenumber=phonenumber,
-                                         amount=amount, currency=currency, description=description,
-                                         callback_url=callback_url, payment_type=payment_type)
+                                              amount=amount, currency=currency, description=description,
+                                              callback_url=callback_url, payment_type=payment_type)
 
-        #self.assertIn(phonenumber, payment.phone_nos)
+        # self.assertIn(phonenumber, payment.phone_nos)
         self.assertEqual(payment_type, payment.payment_type)
         self.assertEqual(description, payment.description)
 
-
-
-    #creating & getting single payment
+    # creating & getting single payment
     @tape.use_cassette('payments_create_get.json')
     def test010_payment_create_get(self):
         phonenumber = "+256773712831"
@@ -164,29 +143,25 @@ class RequestsClientTest(BeyonicTestCase):
         payment_type = 'money'
 
         payment = self.beyonic.Payment.create(client=self.client, phonenumber=phonenumber,
-                                         amount=amount, currency=currency, description=description,
-                                         callback_url=callback_url, payment_type=payment_type)
+                                              amount=amount, currency=currency, description=description,
+                                              callback_url=callback_url, payment_type=payment_type)
 
-        #self.assertIn(phonenumber, payment.phone_nos)
+        # self.assertIn(phonenumber, payment.phone_nos)
         self.assertEqual(payment_type, payment.payment_type)
         self.assertIn(description, payment.description)
 
         refreshed_payment = self.beyonic.Payment.get(id=payment.id, client=self.client)
-        #self.assertIn(phonenumber, refreshed_payment.phone_nos)
+        # self.assertIn(phonenumber, refreshed_payment.phone_nos)
         self.assertIn(payment_type, refreshed_payment.payment_type)
         self.assertEqual(description, refreshed_payment.description)
 
-
-
-    #collection list
+    # collection list
     @tape.use_cassette('collections_list.json')
     def test011_collection_list(self):
         collections = self.beyonic.Collection.list(client=self.client)
         self.assertLessEqual(1, len(collections.results))
 
-
-
-    #collection get
+    # collection get
     @tape.use_cassette('collections_get.json')
     def test012_collection_get(self):
         with tape.use_cassette('collections_list.json'):
@@ -195,29 +170,26 @@ class RequestsClientTest(BeyonicTestCase):
         collection = self.beyonic.Collection.get(id=collection_id, client=self.client)
         self.assertEqual(collection.id, collection.id)
 
-
-
     @tape.use_cassette('collections_search.json')
     def test013_collection_search(self):
-        collections = self.beyonic.Collection.list(client=self.client, phonenumber='+2547227272723', remote_transaction_id='12132')
+        collections = self.beyonic.Collection.list(client=self.client, phonenumber='+2547227272723',
+                                                   remote_transaction_id='12132')
         self.assertLessEqual(1, len(collections))
-
 
     @tape.use_cassette('collections_claim.json')
     def test014_collection_claim(self):
-        collections = self.beyonic.Collection.list(client=self.client, claim=True, phonenumber='+254727843600', remote_transaction_id=None, amount='200')
+        collections = self.beyonic.Collection.list(client=self.client, claim=True, phonenumber='+254727843600',
+                                                   remote_transaction_id=None, amount='200')
         self.assertLessEqual(1, len(collections))
 
-
-
-    #creating collection request
-    # @tape.use_cassette('collection_request_create.json')
+    # creating collection request
+    @tape.use_cassette('collection_request_create.json')
     def test015_create_collectionrequst(self):
         phonenumber = "+256772781923"
         amount = '3000'
-        currency='UGX'
+        currency = 'UGX'
         collection_request = self.beyonic.CollectionRequest.create(client=self.client, phonenumber=phonenumber,
-                                         amount=amount, currency=currency)
+                                                                   amount=amount, currency=currency)
 
         self.assertIn(phonenumber, collection_request.phonenumber)
         self.assertEqual(currency, collection_request.currency)
@@ -226,8 +198,7 @@ class RequestsClientTest(BeyonicTestCase):
         self.assertIn(phonenumber, refreshed_collection_request.phonenumber)
         self.assertEqual(currency, refreshed_collection_request.currency)
 
-
-    #collection request list
+    # collection request list
     @tape.use_cassette('collection_request_list.json')
     def test016_list_collection_requests(self):
         collections_requests = self.beyonic.CollectionRequest.list(client=self.client)
@@ -238,7 +209,6 @@ class RequestsClientTest(BeyonicTestCase):
     def test017_accounts_list(self):
         payments = self.beyonic.Account.list(client=self.client)
         self.assertLessEqual(1, len(payments.results))
-
 
     # creating collection request with metadata dot notation
     @tape.use_cassette('collection_request_create_with_dot_notation_metadata.json')
@@ -257,7 +227,6 @@ class RequestsClientTest(BeyonicTestCase):
         self.assertIn(phonenumber, refreshed_collection_request.phonenumber)
         self.assertEqual(currency, refreshed_collection_request.currency)
 
-
     # creating collection request with metadata dict notation
     @tape.use_cassette('collection_request_create_with_dict_notation_metadata.json')
     def test019_create_collectionrequst_with_array_notation_metadata(self):
@@ -265,7 +234,8 @@ class RequestsClientTest(BeyonicTestCase):
         amount = '3000'
         currency = 'BXC'
         collection_request = self.beyonic.CollectionRequest.create(
-            client=self.client, phonenumber=phonenumber, amount=amount, currency=currency, metadata={'my_id': '123ASDAsd123'})
+            client=self.client, phonenumber=phonenumber, amount=amount, currency=currency,
+            metadata={'my_id': '123ASDAsd123'})
         self.assertIn(phonenumber, collection_request.phonenumber)
         self.assertEqual(currency, collection_request.currency)
         self.assertEqual('123ASDAsd123', collection_request.metadata.get('my_id'))
@@ -273,7 +243,6 @@ class RequestsClientTest(BeyonicTestCase):
         refreshed_collection_request = self.beyonic.CollectionRequest.get(id=collection_request.id, client=self.client)
         self.assertIn(phonenumber, refreshed_collection_request.phonenumber)
         self.assertEqual(currency, refreshed_collection_request.currency)
-
 
 
 if __name__ == '__main__':
