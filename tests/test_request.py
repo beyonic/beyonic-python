@@ -1,7 +1,7 @@
 import unittest
 
 from beyonic.api_client import RequestsClient
-from .config import BeyonicTestCase, tape
+from tests.config import BeyonicTestCase, tape
 
 '''
 # Uncomment below lines if you want to debug vcrpy
@@ -23,6 +23,12 @@ class RequestsClientTest(BeyonicTestCase):
     client = RequestsClient(verify_ssl_certs=False)
 
     # getting webhooks using requests client lib
+
+    @tape.use_cassette('banks_list.json')
+    def test_banks_list(self):
+        banks = self.beyonic.Bank.list(client=self.client)
+        self.assertEqual(1, len(banks.results))
+
 
     @tape.use_cassette('webhooks_list.json')
     def test001_webhooks_list(self):
@@ -50,7 +56,7 @@ class RequestsClientTest(BeyonicTestCase):
         self.assertEqual(event, webhook.event)
 
         with tape.use_cassette('webhooks_get.json'):
-            refreshed_webhook = self.beyonic.Webhook.get(id=webhook.id, client=self.client)
+            refreshed_webhook = self.beyonic.Webhook.get(object_id=webhook.id, client=self.client)
 
         # hack
         str(refreshed_webhook)
@@ -62,8 +68,8 @@ class RequestsClientTest(BeyonicTestCase):
     def test004_webhook_update_get(self):
         web_id = 52
         new_target = "https://mysite.com/callbacks/payment/updated"
-        webhook = self.beyonic.Webhook.update(id=web_id, client=self.client, target=new_target)
-        refreshed_webhook = self.beyonic.Webhook.get(id=webhook.id, client=self.client)
+        webhook = self.beyonic.Webhook.update(object_id=web_id, client=self.client, target=new_target)
+        refreshed_webhook = self.beyonic.Webhook.get(object_id=webhook.id, client=self.client)
         self.assertEqual(new_target, refreshed_webhook.target)
 
     # updating webhook using save
@@ -71,12 +77,12 @@ class RequestsClientTest(BeyonicTestCase):
     def test005_webhook_save_get(self):
         web_id = 52
         new_target = "https://mysite.com/callbacks/payment/saved"
-        webhook = self.beyonic.Webhook.get(id=web_id, client=self.client)
+        webhook = self.beyonic.Webhook.get(object_id=web_id, client=self.client)
 
         webhook.target = new_target
         webhook.save()
 
-        refreshed_webhook = self.beyonic.Webhook.get(id=webhook.id, client=self.client)
+        refreshed_webhook = self.beyonic.Webhook.get(object_id=webhook.id, client=self.client)
         self.assertEqual(new_target, refreshed_webhook.target)
 
     # deleting webhook
@@ -105,7 +111,7 @@ class RequestsClientTest(BeyonicTestCase):
         new_target = "https://mysite.com/callbacks/payment/saved/1"
         webhook.target = new_target
         webhook.save()
-        refreshed_webhook = self.beyonic.Webhook.get(id=webhook.id, client=self.client)
+        refreshed_webhook = self.beyonic.Webhook.get(object_id=webhook.id, client=self.client)
         self.assertEqual(new_target, refreshed_webhook.target)
 
     # getting payment using requests client lib
@@ -150,7 +156,7 @@ class RequestsClientTest(BeyonicTestCase):
         self.assertEqual(payment_type, payment.payment_type)
         self.assertIn(description, payment.description)
 
-        refreshed_payment = self.beyonic.Payment.get(id=payment.id, client=self.client)
+        refreshed_payment = self.beyonic.Payment.get(object_id=payment.id, client=self.client)
         # self.assertIn(phonenumber, refreshed_payment.phone_nos)
         self.assertIn(payment_type, refreshed_payment.payment_type)
         self.assertEqual(description, refreshed_payment.description)
@@ -167,7 +173,7 @@ class RequestsClientTest(BeyonicTestCase):
         with tape.use_cassette('collections_list.json'):
             collections = self.beyonic.Collection.list(client=self.client)
             collection_id = collections.results[0]['id']
-        collection = self.beyonic.Collection.get(id=collection_id, client=self.client)
+        collection = self.beyonic.Collection.get(object_id=collection_id, client=self.client)
         self.assertEqual(collection.id, collection.id)
 
     @tape.use_cassette('collections_search.json')
@@ -194,7 +200,7 @@ class RequestsClientTest(BeyonicTestCase):
         self.assertIn(phonenumber, collection_request.phonenumber)
         self.assertEqual(currency, collection_request.currency)
 
-        refreshed_collection_request = self.beyonic.CollectionRequest.get(id=collection_request.id, client=self.client)
+        refreshed_collection_request = self.beyonic.CollectionRequest.get(object_id=collection_request.id, client=self.client)
         self.assertIn(phonenumber, refreshed_collection_request.phonenumber)
         self.assertEqual(currency, refreshed_collection_request.currency)
 
@@ -223,7 +229,7 @@ class RequestsClientTest(BeyonicTestCase):
         self.assertEqual(currency, collection_request.currency)
         self.assertEqual('123ASDAsd123', collection_request.metadata.get('my_id'))
 
-        refreshed_collection_request = self.beyonic.CollectionRequest.get(id=collection_request.id, client=self.client)
+        refreshed_collection_request = self.beyonic.CollectionRequest.get(object_id=collection_request.id, client=self.client)
         self.assertIn(phonenumber, refreshed_collection_request.phonenumber)
         self.assertEqual(currency, refreshed_collection_request.currency)
 
@@ -240,7 +246,7 @@ class RequestsClientTest(BeyonicTestCase):
         self.assertEqual(currency, collection_request.currency)
         self.assertEqual('123ASDAsd123', collection_request.metadata.get('my_id'))
 
-        refreshed_collection_request = self.beyonic.CollectionRequest.get(id=collection_request.id, client=self.client)
+        refreshed_collection_request = self.beyonic.CollectionRequest.get(object_id=collection_request.id, client=self.client)
         self.assertIn(phonenumber, refreshed_collection_request.phonenumber)
         self.assertEqual(currency, refreshed_collection_request.currency)
 
