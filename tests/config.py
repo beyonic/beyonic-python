@@ -18,7 +18,7 @@ tape = vcr.VCR(
     cassette_library_dir='vcr_cassettes',
     filter_headers=['Authorization'],
     serializer='json',
-    record_mode='once',
+    record_mode='new_episodes',
 )
 
 

@@ -22,7 +22,7 @@
                     ]
                 },
                 "method": "GET",
-                "uri": "https://example.com/banks"
+                "uri": "http://localhost:8000/api/banks"
             },
             "response": {
                 "status": {
@@ -47,7 +47,7 @@
                     ]
                 },
                 "body": {
-                    "string": {"count":1,"next":null,"previous":null,"results":[{"id":1,"name":"BANK OF AFRICA-UGANDA LTD","country":{"iso":"UG","iso3":"","iso_numeric":null,"name":"Uganda","printable_name":"Uganda","phone_prefix":"+256","supported":true},"swift_code":null}]}
+                    "string": "{\"count\":2,\"next\":null,\"previous\":null,\"results\":[{\"id\":1,\"name\":\"BANK OF AFRICA-UGANDA LTD\",\"country\":{\"iso\":\"UG\",\"iso3\":\"UGA\",\"iso_numeric\":null,\"name\":\"Uganda\",\"printable_name\":\"Uganda\",\"phone_prefix\":\"+256\",\"supported\":true},\"swift_code\":null}]}"
                 }
             }
         }

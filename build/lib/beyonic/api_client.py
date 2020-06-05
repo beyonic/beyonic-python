@@ -32,7 +32,7 @@ class BaseClient(object):
         if params and params.get('metadata', None):
             metadata = params.get('metadata')
             transformed_metadata = {}
-            for key, value in metadata.items():
+            for key, value in metadata.iteritems():
                 transformed_metadata['metadata.{}'.format(key)] = value
             params.pop('metadata')
             params.update(transformed_metadata)
@@ -77,11 +77,11 @@ class RequestsClient(BaseClient):
 
             content = result.content
             status_code = result.status_code
-            return content, status_code
         except Exception as e:
             # Would catch just requests.exceptions.RequestException, but can
             # also raise ValueError, RuntimeError, etc.
             self._handle_request_error(e)
+        return content, status_code
 
     def _handle_request_error(self, e):
         msg = ("Unexpected error communicating with Beyonic API.")
