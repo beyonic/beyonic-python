@@ -26,7 +26,7 @@ python setup.py install
 
 ## Usage
 
-Please visit https://apidocs.beyonic.com/ for usage documentation
+Please visit https://developer.mfsafrica.com/docs for usage documentation
 
 ## Development
 
