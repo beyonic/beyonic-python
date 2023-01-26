@@ -46,7 +46,7 @@
                         "1; mode=block"
                     ],
                     "content-security-policy": [
-                        "script-src 'self' *.googleapis.com *.bootstrapcdn.com *.cloudflare.com *.jsdelivr.net beyonic.atlassian.net 'unsafe-inline' 'unsafe-eval' *.google-analytics.com *.newrelic.com bam.nr-data.net; img-src 'self' *.bootstrapcdn.com *.cloudflare.com secure.gravatar.com data: blob: *.openstreetmap.org *.google-analytics.com; default-src 'self'; frame-src 'self' beyonic.atlassian.net; style-src 'self' *.googleapis.com *.bootstrapcdn.com *.cloudflare.com 'unsafe-inline' cdn.jsdelivr.net; media-src 'self'; connect-src 'self'; font-src 'self' *.bootstrapcdn.com data:; report-uri /reports/csp-report/"
+                        "script-src 'self' *.googleapis.com *.bootstrapcdn.com *.cloudflare.com *.jsdelivr.net mfsafrica.atlassian.net 'unsafe-inline' 'unsafe-eval' *.google-analytics.com *.newrelic.com bam.nr-data.net; img-src 'self' *.bootstrapcdn.com *.cloudflare.com secure.gravatar.com data: blob: *.openstreetmap.org *.google-analytics.com; default-src 'self'; frame-src 'self' beyonic.atlassian.net; style-src 'self' *.googleapis.com *.bootstrapcdn.com *.cloudflare.com 'unsafe-inline' cdn.jsdelivr.net; media-src 'self'; connect-src 'self'; font-src 'self' *.bootstrapcdn.com data:; report-uri /reports/csp-report/"
                     ],
                     "content-language": [
                         "en"
