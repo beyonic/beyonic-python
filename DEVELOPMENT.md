@@ -18,7 +18,7 @@ To create new api model you should perform below mentioned steps:
 
 
 ```sh
-$ nosetests --with-coverage  --cover-html --cover-package=beyonic
+$ coverage run -m pytest --cov=beyonic
 ...............................................................................
 ```
 
