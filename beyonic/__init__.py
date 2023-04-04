@@ -21,4 +21,4 @@ from beyonic.apis.network import Network
 from beyonic.apis.currency import Currency
 from beyonic.apis.bank import Bank
 
-__version__ = "0.1.16"
+__version__ = "0.1.17"
