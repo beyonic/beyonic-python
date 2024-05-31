@@ -1,7 +1,7 @@
 # Beyonic API Python bindings
 
 # Default values if any
-DEFAULT_ENDPOINT_BASE = 'https://api.mfsafrica.com/api/'
+DEFAULT_ENDPOINT_BASE = 'https://api.onafriq.com/api/'
 
 # Config
 api_key = None
