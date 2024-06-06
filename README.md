@@ -1,6 +1,6 @@
 # Beyonic Python Library
 
-The official Python library for interacting with http://mfsafrica.com API
+The official Python library for interacting with http://portal.onafriq.com API
 
 ## Installation
 
